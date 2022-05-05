@@ -14,4 +14,4 @@ This manual process can be drastically improved with automation. In this Project
 
 ### Main Packages Used
 
-React.js, Node.js, Sequelize, Postgres, Webpack; Bootstrap for CSS
+React.js, Node.js, Sequelize, Webpack; Bootstrap for CSS
