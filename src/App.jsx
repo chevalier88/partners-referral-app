@@ -20,10 +20,12 @@ export default function App() {
   };
 
   const getItems = () => {
-    axios.get('/items').then((result) => {
-      console.log(result);
-      setItems(result.data.items);
-    });
+    // axios.get('/items').then((result) => {
+    //   console.log(result);
+    //   setItems(result.data.items);
+    // });
+    console.log('placeholder get items');
+    setItems(['testing', 'blah'])
   };
 
   const selectedItem = items[selectedItemIndex];
