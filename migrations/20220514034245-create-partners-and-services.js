@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable('countries', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,14 +10,24 @@ module.exports = {
       name: {
         type: Sequelize.TEXT,
       },
-      email: {
+    });
+
+    await queryInterface.createTable('partners', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      name:{
         type: Sequelize.TEXT,
       },
-      password: {
-        type: Sequelize.TEXT,
-      },
-      user_type: {
-        type: Sequelize.TEXT,
+      partner_manager_id: {
+        type: Sequelize.INTEGER,
+        references:{
+          model:'users',
+          key:'id',
+        }
       },
       created_at: {
         allowNull: false,
@@ -29,42 +39,15 @@ module.exports = {
       },
     });
 
-    await queryInterface.createTable('requests', {
+    await queryInterface.createTable('services', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      referring_employee_id:{
-        type: Sequelize.INTEGER,
-        references:{
-          model:'users',
-          key:'id',
-        }
-      },
-      partner_manager_id: {
-        type: Sequelize.INTEGER,
-        references:{
-          model:'users',
-          key:'id',
-        }
-      },
-      request_type:{
+      name:{
         type: Sequelize.TEXT,
-      },
-      employee_numbers:{
-        type: Sequelize.INTEGER,
-      },
-      entities_existing:{
-        type: Sequelize.TEXT,
-      },
-      comments:{
-        type: Sequelize.TEXT,
-      },
-      request_addressed:{
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
       },
       created_at: {
         allowNull: false,
@@ -78,8 +61,9 @@ module.exports = {
   },
   down: async (queryInterface) => {
     await Promise.all([
-      queryInterface.dropTable('users'),
-      queryInterface.dropTable('requests'),
+      queryInterface.dropTable('countries'),
+      queryInterface.dropTable('partners'),
+      queryInterface.dropTable('services'),
     ]);
   },
 };
