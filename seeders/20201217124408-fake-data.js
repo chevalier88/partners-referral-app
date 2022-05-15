@@ -1,28 +1,29 @@
-const faker = require('faker');
-
 module.exports = {
   up: async (queryInterface) => {
-    const itemsList = [];
-
-    for (let i = 0; i < 100; i += 1) {
-      itemsList.push({
-        name: faker.commerce.product(),
-        description: faker.commerce.productDescription(),
-        price: faker.commerce.price(),
+    // Define category data
+    const users = [
+      {
+        name: 'Graham Lim',
+        email: 'glim@globalization-partners.com',
+        password: 'abc123',
+        user_type: 'partner manager',
         created_at: new Date(),
         updated_at: new Date(),
-      });
-    }
+      },
+      {
+        name: 'Janet Soon',
+        email: 'jsoon@globalization-partners.com',
+        password: 'abc123',
+        user_type: 'referring employee',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ];
 
-    try {
-      const result = await queryInterface.bulkInsert('items', itemsList);
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
+    queryInterface.bulkInsert('users', users);
   },
 
   down: async (queryInterface) => {
-    await queryInterface.bulkDelete('items', null, {});
+    await queryInterface.bulkDelete('users', null);
   },
 };

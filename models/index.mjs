@@ -2,7 +2,8 @@ import { Sequelize } from 'sequelize';
 import url from 'url';
 import allConfig from '../config/config.js';
 
-import itemModel from './item.mjs';
+import initUserModel from './user.mjs';
+import initRequestModel from './request.mjs';
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -32,7 +33,21 @@ if (env === 'production') {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-db.Item = itemModel(sequelize, Sequelize.DataTypes);
+
+db.User = initUserModel(sequelize, Sequelize.DataTypes);
+db.Request = initRequestModel(sequelize, Sequelize.DataTypes);
+
+// creates a method in the
+// request object that has a user - the referring employee and the partner manager
+db.Request.belongsTo(db.User, {
+  as: 'PartnerManagerID',
+  foreignKey: 'partner_manager_id',
+});
+
+db.Request.belongsTo(db.User, {
+  as: 'ReferringEmployeeID',
+  foreignKey: 'referring_employee_id',
+});
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
