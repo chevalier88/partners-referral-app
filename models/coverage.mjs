@@ -1,6 +1,6 @@
-export default function initRequestModel(sequelize, DataTypes) {
+export default function initCoverageModel(sequelize, DataTypes) {
   return sequelize.define(
-    'request',
+    'coverage',
     {
       id: {
         allowNull: false,
@@ -8,24 +8,26 @@ export default function initRequestModel(sequelize, DataTypes) {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      referringEmployeeId: {
+      partnersId: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'users',
+          model: 'partners',
           key: 'id',
         },
       },
-      employeeNumbers: {
+      servicesId: {
         type: DataTypes.INTEGER,
+        references: {
+          model: 'services',
+          key: 'id',
+        },
       },
-      entitiesExisting: {
-        type: DataTypes.TEXT,
-      },
-      comments: {
-        type: DataTypes.TEXT,
-      },
-      requestAddressed: {
-        type: DataTypes.BOOLEAN,
+      regionsId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'regions',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,

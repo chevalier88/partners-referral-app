@@ -7,6 +7,7 @@ import initRequestModel from './request.mjs';
 import initPartnerModel from './partner.mjs';
 import initRegionModel from './region.mjs';
 import initServiceModel from './service.mjs';
+import initCoverageModel from './coverage.mjs';
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -41,49 +42,38 @@ db.Region = initRegionModel(sequelize, Sequelize.DataTypes);
 db.Request = initRequestModel(sequelize, Sequelize.DataTypes);
 db.Service = initServiceModel(sequelize, Sequelize.DataTypes);
 db.User = initUserModel(sequelize, Sequelize.DataTypes);
+db.Coverage = initCoverageModel(sequelize, Sequelize.DataTypes);
 
-// Requests table takes 2 foreign keys from the User table
-db.User.hasMany(db.Request, {
-  as: 'partner_request_referred',
-  foreignKey: 'partner_manager_id',
-});
-db.Request.belongsTo(db.User, {
-  as: 'PartnerManagerID',
-  foreignKey: 'partner_manager_id',
-});
+// One-to-Many table here - each Request can only have 1 submitting person, ther referring employee
+db.Request.belongsTo(db.User);
+db.User.hasMany(db.Request);
 
-db.User.hasMany(db.Request, {
-  as: 'referring_employee_request',
-  foreignKey: 'referring_employee_id',
-});
-db.Request.belongsTo(db.User, {
-  as: 'ReferringEmployeeID',
-  foreignKey: 'referring_employee_id',
-});
-
-// One-to-Many table here.
+// One-to-Many table here - each Partner can only have 1 dedicated Partner Manager assigned
 db.Partner.belongsTo(db.User);
 db.User.hasMany(db.Partner);
 
-// in order for the many-to-many to work we must mention the join table here.
+// in order for the many-to-many to work we must mention the join tables here.
 db.Request.belongsToMany(db.Partner, { through: 'requests_partners' });
 db.Partner.belongsToMany(db.Request, { through: 'requests_partners' });
 
 db.Request.belongsToMany(db.Region, { through: 'requests_regions' });
 db.Region.belongsToMany(db.Request, { through: 'requests_regions' });
 
+db.Request.belongsToMany(db.Service, { through: 'requests_services' });
+db.Service.belongsToMany(db.Request, { through: 'requests_services' });
+
 // we also have the special partners_services_regions.
 // this has 3 foreign keys in one table, and nothing else
 // stack overflow offers this solution to associate the partners, services and regions tables into one joining table which doesn't require creation of joining table
 // https://stackoverflow.com/questions/60552715/sequelize-association-many-to-many-3-foreign-keys
-User.hasMany(ThreadFolder, { foreignKey: 'user_id' })
-ThreadFolder.belongsTo(User, { foreignKey: 'user_id' })
+Partner.hasMany(Coverage, { foreignKey: 'partners_id' })
+Coverage.belongsTo(Partner, { foreignKey: 'partners_id' })
 
-Folder.hasMany(ThreadFolder, { foreignKey: 'folder_id' })
-ThreadFolder.belongsTo(Folder, { foreignKey: 'folder_id' })
+Service.hasMany(Coverage, { foreignKey: 'services_id' })
+Coverage.belongsTo(Service, { foreignKey: 'services_id' })
 
-Thread.hasMany(ThreadFolder, { foreignKey: 'thread_id' })
-ThreadFolder.belongsTo(Thread, { foreignKey: 'thread_id' })
+Region.hasMany(Coverage, { foreignKey: 'regions_id' })
+Coverage.belongsTo(Region, { foreignKey: 'regions_id' })
 
 
 db.sequelize = sequelize;
