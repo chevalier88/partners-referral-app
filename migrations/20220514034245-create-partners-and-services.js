@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('countries', {
+    await queryInterface.createTable('regions', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,6 +9,14 @@ module.exports = {
       },
       name: {
         type: Sequelize.TEXT,
+      },
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
       },
     });
 
@@ -28,6 +36,18 @@ module.exports = {
           model:'users',
           key:'id',
         }
+      },
+      primary_contact_name:{
+        type: Sequelize.TEXT,
+      },
+      primary_contact_email:{
+        type: Sequelize.TEXT,
+      },
+      secondary_contact_name:{
+        type: Sequelize.TEXT,
+      },
+      secondary_contact_email:{
+        type: Sequelize.TEXT,
       },
       created_at: {
         allowNull: false,
@@ -61,7 +81,7 @@ module.exports = {
   },
   down: async (queryInterface) => {
     await Promise.all([
-      queryInterface.dropTable('countries'),
+      queryInterface.dropTable('regions'),
       queryInterface.dropTable('partners'),
       queryInterface.dropTable('services'),
     ]);
