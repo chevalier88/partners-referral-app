@@ -42,8 +42,13 @@ db.Request = initRequestModel(sequelize, Sequelize.DataTypes);
 db.Service = initServiceModel(sequelize, Sequelize.DataTypes);
 db.User = initUserModel(sequelize, Sequelize.DataTypes);
 
+// Requests table takes 2 foreign keys from the User table
 db.User.hasMany(db.Request, {
   as: 'partner_request_referred',
+  foreignKey: 'partner_manager_id',
+});
+db.Request.belongsTo(db.User, {
+  as: 'PartnerManagerID',
   foreignKey: 'partner_manager_id',
 });
 
@@ -51,16 +56,13 @@ db.User.hasMany(db.Request, {
   as: 'referring_employee_request',
   foreignKey: 'referring_employee_id',
 });
-
-db.Request.belongsTo(db.User, {
-  as: 'PartnerManagerID',
-  foreignKey: 'partner_manager_id',
-});
-
 db.Request.belongsTo(db.User, {
   as: 'ReferringEmployeeID',
   foreignKey: 'referring_employee_id',
 });
+
+
+
 
 db.Partner.belongsTo(db.User);
 db.User.hasMany(db.Partner);
@@ -68,6 +70,13 @@ db.User.hasMany(db.Partner);
 // in order for the many-to-many to work we must mention the join table here.
 db.Request.belongsToMany(db.Partner, { through: 'requests_partners' });
 db.Partner.belongsToMany(db.Request, { through: 'requests_partners' });
+
+db.Request.belongsToMany(db.Region, { through: 'requests_regions' });
+db.Region.belongsToMany(db.Request, { through: 'requests_regions' });
+
+// we also have the special partners_services_regions.
+// stack overflow offers this solution to associate the partners, services and regions tables into one joining table which doesn't require creation of joining table
+
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
