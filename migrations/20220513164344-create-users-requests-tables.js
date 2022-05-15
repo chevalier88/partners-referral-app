@@ -43,16 +43,6 @@ module.exports = {
           key:'id',
         }
       },
-      partner_manager_id: {
-        type: Sequelize.INTEGER,
-        references:{
-          model:'users',
-          key:'id',
-        }
-      },
-      request_type:{
-        type: Sequelize.TEXT,
-      },
       employee_numbers:{
         type: Sequelize.INTEGER,
       },

@@ -61,9 +61,7 @@ db.Request.belongsTo(db.User, {
   foreignKey: 'referring_employee_id',
 });
 
-
-
-
+// One-to-Many table here.
 db.Partner.belongsTo(db.User);
 db.User.hasMany(db.Partner);
 
@@ -75,7 +73,17 @@ db.Request.belongsToMany(db.Region, { through: 'requests_regions' });
 db.Region.belongsToMany(db.Request, { through: 'requests_regions' });
 
 // we also have the special partners_services_regions.
+// this has 3 foreign keys in one table, and nothing else
 // stack overflow offers this solution to associate the partners, services and regions tables into one joining table which doesn't require creation of joining table
+// https://stackoverflow.com/questions/60552715/sequelize-association-many-to-many-3-foreign-keys
+User.hasMany(ThreadFolder, { foreignKey: 'user_id' })
+ThreadFolder.belongsTo(User, { foreignKey: 'user_id' })
+
+Folder.hasMany(ThreadFolder, { foreignKey: 'folder_id' })
+ThreadFolder.belongsTo(Folder, { foreignKey: 'folder_id' })
+
+Thread.hasMany(ThreadFolder, { foreignKey: 'thread_id' })
+ThreadFolder.belongsTo(Thread, { foreignKey: 'thread_id' })
 
 
 db.sequelize = sequelize;
