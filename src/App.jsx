@@ -73,11 +73,6 @@ function FormShower({ bills, setBills }) {
 
   return (
     <div>
-      <form>
-        <button onClick={showFormHandler}>Create New Bill</button>
-      </form>
-
-
     </div>
   );
 }

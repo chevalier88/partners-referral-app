@@ -32,6 +32,16 @@ module.exports = {
         created_at: new Date(),
         updated_at: new Date(),
       },
+      {
+        name: 'Europe, Middle East and Africa (EMEA)',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        name: 'North America (NA)',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
     ];
     queryInterface.bulkInsert('regions', regions);
   },
