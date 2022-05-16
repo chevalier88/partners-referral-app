@@ -1,48 +1,93 @@
-import React, { useState } from 'react';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
 
-import Cart from './components/Cart.jsx';
-import Items from './components/Items.jsx';
-import ItemDetail from './components/ItemDetail.jsx';
+// we have to build the form first
+function BillForm({ bills, setBills }) {
+  // Control the form input value using a state variable name.
+  // here we pass the state INTO the component params because it ends up becoming impacted by axios
+  // axios will change the hook state using setBills to whatever bills will now be
+  // this in turn produces 
 
-export default function App() {
-  const [items, setItems] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [selectedItemIndex, setSelectedItemIndex] = useState();
+  const handleSubmit = (event) => {
+    event.preventDefault(); // prevents refreshing?
+    console.log('asdsa');
+    console.log(event.target.Bill.value);
 
-  const addToCart = (item, quantity) => {
-    const cartItem = { quantity, ...item };
-    setCart([cartItem, ...cart]);
+    axios.post('/bill', {
+      name: event.target.Bill.value,
+    })
+      .then((response) => {
+        console.log(response.data);
+        const newBills = [...bills];
+        newBills.push(event.target.Bill.value);
+        setBills(newBills);
+      });
   };
+  return (
+    <div>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Bill</Form.Label>
+          <Form.Control placeholder="Bill input" name="Bill" />
+        </Form.Group>
 
-  const setItemDetail = (itemIndex) => {
-    setSelectedItemIndex(itemIndex);
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+
+      </Form>
+      <br />
+      <br />
+      Bills So Far:
+      {' '}
+      <ul>
+        {bills.map((bill) => (
+          <li key={bill.toString()}>
+            {bill}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+// form shower will spawn the initial form
+function FormShower({ bills, setBills }) {
+  const [showForm, setShowForm] = useState(false);
+
+  const showFormHandler = (event) => {
+    event.preventDefault();
+    axios
+      .get('/bills')
+      .then((response) => {
+        console.log('receiving data from db after findAll bills...');
+        console.log(response.data);
+        const parseableArrayOfBillStrings = response.data.map((({ name }) => name));
+        console.log(parseableArrayOfBillStrings);
+        setBills(parseableArrayOfBillStrings);
+      })
+      .catch((error) => console.log(error));
+    setShowForm(true);
+    console.log('refresh prevented');
   };
-
-  const getItems = () => {
-    // axios.get('/items').then((result) => {
-    //   console.log(result);
-    //   setItems(result.data.items);
-    // });
-    console.log('placeholder get items');
-    setItems(['testing', 'blah'])
-  };
-
-  const selectedItem = items[selectedItemIndex];
 
   return (
-    <div className="container">
-      <div className="row">
-        <h1 className="page-title">Wow Shopping!</h1>
-        <Items items={items} setItemDetail={setItemDetail} />
-        {items.length === 0 && (
-          <button type="button" onClick={getItems}>
-            Get Items
-          </button>
-        )}
-        <ItemDetail item={selectedItem} addToCart={addToCart} />
-        <Cart items={cart} />
-      </div>
+    <div>
+      <form>
+        <button onClick={showFormHandler}>Create New Bill</button>
+      </form>
+
+
+    </div>
+  );
+}
+
+export default function App() {
+  const [bills, setBills] = useState([]);
+
+  return (
+    <div>
+      <FormShower bills={bills} setBills={setBills} />
     </div>
   );
 }
