@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import axios from "axios";
 
-export default function Login({email, setEmail, password, setPassword, loggedIn, setLoggedIn, isPartnerManager, setIsPartnerManager}) {
+export default function Login({email, setEmail, password, setPassword, setLoggedIn, userData, setUserData, setShowLogin}) {
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -21,8 +21,19 @@ export default function Login({email, setEmail, password, setPassword, loggedIn,
     .then((response)=>{
       console.log('printing response.data from login form submit...');
       console.log(response.data);
-      if (response.data.userType === "partner manager"){
-        
+      if (response.data.id != null){
+        // this means there's an id for the user and it's a real user
+        setLoggedIn(true);
+        const newUserData = {
+          id: response.data.id, 
+          name: response.data.name, 
+          type: response.data.userType,
+        };
+        console.log(newUserData);
+        setUserData(userData => ({...userData, ...newUserData}));
+        console.log('printing userData...');
+        console.log(userData);
+        setShowLogin(false);
       }
     })
     .catch((error)=> console.log(error));
