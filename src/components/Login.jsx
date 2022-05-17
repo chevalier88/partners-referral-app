@@ -12,6 +12,7 @@ export default function Login({email, setEmail, password, setPassword, setLogged
 
   function handleSubmit(event) {
     event.preventDefault();
+    setLoginError(false);
     console.log(email)
     console.log(password)
     axios.post('./login', {
@@ -31,14 +32,12 @@ export default function Login({email, setEmail, password, setPassword, setLogged
         };
         console.log(newUserData);
         setUserData(userData => ({...userData, ...newUserData}));
-        console.log('printing userData...');
-        console.log(userData);
         setShowLogin(false);
       } else {
-        console.log(response.status);
-        console.log(reponse.statusText);
         setLoginError(true);
-      }
+        console.log(response.status);
+        console.log(response.statusText);
+      } 
     })
     .catch((error)=> console.log(error));
   }
