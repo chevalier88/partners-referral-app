@@ -12,6 +12,7 @@ export default function initLoginController(db) {
       response.send( loginSubmitted );
     } catch (error) {
       console.log(error);
+      response.send(error);
     }
   };
 

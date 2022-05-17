@@ -14,13 +14,15 @@ export default function App() {
     type: ''
   });
 
+  const [loginError, setLoginError] = useState(false);
+
   const [notificationText, setNotificationText] = useState("")
 
   return (
     <div>
-      <Notification loggedIn = {loggedIn} userData = {userData} notificationText = {notificationText} setNotificationText = {setNotificationText} />
+      <Notification loggedIn = {loggedIn} loginError = {loginError} userData = {userData} notificationText = {notificationText} setNotificationText = {setNotificationText} />
 
-      <LoginAppear showLogin = {showLogin} setShowLogin = {setShowLogin} email = {email} setEmail = {setEmail} password = {password} setPassword = {setPassword} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData}/>
+      <LoginAppear showLogin = {showLogin} setShowLogin = {setShowLogin} email = {email} setEmail = {setEmail} password = {password} setPassword = {setPassword} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData} setLoginError = {setLoginError}/>
     </div>
   );
 }
