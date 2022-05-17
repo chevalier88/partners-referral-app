@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Notification from './components/Notification.jsx';
 import LoginAppear from './components/LoginAppear.jsx'
+import NavbarComponent from './components/NavbarComponent.jsx';
 
 export default function App() {
   const [showLogin, setShowLogin] = useState(true);
@@ -20,6 +21,7 @@ export default function App() {
 
   return (
     <div>
+      <NavbarComponent/>
       <Notification loggedIn = {loggedIn} loginError = {loginError} userData = {userData} notificationText = {notificationText} setNotificationText = {setNotificationText} />
 
       <LoginAppear showLogin = {showLogin} setShowLogin = {setShowLogin} email = {email} setEmail = {setEmail} password = {password} setPassword = {setPassword} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData} setLoginError = {setLoginError}/>
