@@ -4,10 +4,10 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import axios from "axios";
 
-export default function Home() {
+export default function About() {
   return (
     <div>
-      <h1>Home</h1>
+      <h1>About</h1>
     </div>
   );
 }

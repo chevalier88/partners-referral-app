@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Notification from './components/Notification.jsx';
 import LoginAppear from './components/LoginAppear.jsx'
 import NavbarComponent from './components/NavbarComponent.jsx';
+import About from './components/About.jsx';
+import Contact from './components/Contact.jsx';
 
 export default function App() {
   const [showLogin, setShowLogin] = useState(true);

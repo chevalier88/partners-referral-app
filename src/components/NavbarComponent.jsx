@@ -1,13 +1,13 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Link
-} from "react-router-dom";
+} from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
-// import 
-
+import About from './About.jsx'
+import Contact from './Contact.jsx';
 
 export default function NavbarComponent(){
   return(  
@@ -19,7 +19,8 @@ export default function NavbarComponent(){
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to = {"/"}>Home</Nav.Link>
-              <Nav.Link as={Link} to = {"/"}>Submit a Request</Nav.Link>
+              <Nav.Link as={Link} to = {"/about"}>About</Nav.Link>
+              <Nav.Link as={Link} to = {"/contact"}>Contact</Nav.Link>
               {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -31,21 +32,11 @@ export default function NavbarComponent(){
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div>
-        {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
+      {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
+      <Routes>
+        <Route path="/about" element = {<About/>} />
+        <Route path="/contact" element = {<Contact/>} />
+      </Routes>
     </Router>
-
   )
 }
