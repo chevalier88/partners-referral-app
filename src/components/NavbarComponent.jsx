@@ -12,7 +12,7 @@ import Contact from './Contact.jsx';
 import LoginPage from './LoginPage.jsx'
 import RequestFormAppear from './RequestFormAppear.jsx';
 
-export default function NavbarComponent({showLogin, setShowLogin, loggedIn, setLoggedIn, userData, setUserData}){
+export default function NavbarComponent({showLogin, setShowLogin, loggedIn, setLoggedIn, userData, setUserData, allRequests, setAllRequests}){
   return(  
     <Router>
       <Navbar bg="light" expand="lg">
@@ -31,7 +31,7 @@ export default function NavbarComponent({showLogin, setShowLogin, loggedIn, setL
       </Navbar>
       <Routes>
         <Route path="/about" element = {<About/>} />
-        <Route path="/request" element = {<RequestFormAppear loggedIn = {loggedIn} userData = {userData} />} />
+        <Route path="/request" element = {<RequestFormAppear loggedIn = {loggedIn} userData = {userData} allRequests = {allRequests} setAllRequests = {setAllRequests}/>} />
         <Route path="/contact" element = {<Contact/>} />
         <Route path="/login" element = {<LoginPage showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData}/>} />
       </Routes>

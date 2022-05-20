@@ -5,6 +5,7 @@ export default function RequestFormAppear({loggedIn, userData}) {
   console.log(`loggedIn: ${loggedIn}`);
   console.log('printing userData...');
   console.log(userData.type);
+  console.log(userData);
 
   let isPartnerManager = true;
   if (userData.type === 'referring employee'){
@@ -18,7 +19,7 @@ export default function RequestFormAppear({loggedIn, userData}) {
     <div>
       <h1>Request Form</h1>
       {!isPartnerManager && (
-        <RequestForm />
+        <RequestForm userData = {userData} allRequests = {allRequests} setAllRequests = {setAllRequests} />
         )
       }
     </div>
