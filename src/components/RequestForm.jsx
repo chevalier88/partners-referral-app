@@ -15,24 +15,40 @@ export default function RequestForm({userData, allRequests, setAllRequests}) {
   const [employeeNumbers, setEmployeeNumbers] = useState(0);
   const [comments, setComments] = useState("");
 
+  console.log('printing all requests so far in state...');
+  console.log(allRequests);
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log('submitting...');
+    console.log('submitting form...');
     console.log(serviceRequested, regionRequested, entitiesStatus, employeeNumbers, comments);
+    const newRequestsNow = [...allRequests];
+    const currentSubmittedRequest = {
+      referring_employee_id : userID,
+      services_id: serviceRequested,
+      regions_id: regionRequested,
+      employee_numbers: employeeNumbers,
+      entities_existing: entitiesStatus,
+      comments: comments,
+      request_addressed: false,
+    }
+    console.log('printing currently submitted request...');
+    console.log(currentSubmittedRequest);
+    newRequestsNow.push(currentSubmittedRequest);
+    setAllRequests(newRequestsNow);
+
     // axios.post('/request', {
-    //   referring_employee_id : userID,
-    //   employee_numbers: employeeNumbers,
-    //   entities_existing: entitiesStatus,
-    //   comments: comments,
-    //   request_addressed: false,
+      // referring_employee_id : userID,
+      // employee_numbers: employeeNumbers,
+      // entities_existing: entitiesStatus,
+      // comments: comments,
+      // request_addressed: false,
     // })
     // .then((response)=>{
     //   console.log('printing response from request submit...');
     //   console.log(response.data);
     // })
     // .catch((error)=> console.log(error));
-
   }
   return (
     <div>

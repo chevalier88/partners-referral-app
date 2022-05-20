@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RequestForm from "./RequestForm.jsx";
 
-export default function RequestFormAppear({loggedIn, userData}) {
+export default function RequestFormAppear({loggedIn, userData, allRequests, setAllRequests}) {
   console.log(`loggedIn: ${loggedIn}`);
   console.log('printing userData...');
   console.log(userData.type);

@@ -15,7 +15,7 @@ export default function Login({email, setEmail, password, setPassword, setLogged
     setLoginError(false);
     console.log(email)
     console.log(password)
-    axios.post('./login', {
+    axios.post('/login', {
       email: email,
       password: password, 
     })
