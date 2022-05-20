@@ -10,14 +10,14 @@ import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import About from './About.jsx'
 import Contact from './Contact.jsx';
 import LoginPage from './LoginPage.jsx'
-import RequestForm from './RequestForm.jsx';
+import RequestFormAppear from './RequestFormAppear.jsx';
 
 export default function NavbarComponent({showLogin, setShowLogin, loggedIn, setLoggedIn, userData, setUserData}){
   return(  
     <Router>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand as={Link} to = {"/"}>Partner Referral App</Navbar.Brand>
+          <Navbar.Brand >Partner Referral App</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -31,7 +31,7 @@ export default function NavbarComponent({showLogin, setShowLogin, loggedIn, setL
       </Navbar>
       <Routes>
         <Route path="/about" element = {<About/>} />
-        <Route path="/request" element = {<RequestForm loggedIn = {loggedIn} userData = {userData} />} />
+        <Route path="/request" element = {<RequestFormAppear loggedIn = {loggedIn} userData = {userData} />} />
         <Route path="/contact" element = {<Contact/>} />
         <Route path="/login" element = {<LoginPage showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData}/>} />
       </Routes>
