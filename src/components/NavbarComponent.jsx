@@ -34,7 +34,7 @@ export default function NavbarComponent({showLogin, setShowLogin, loggedIn, setL
       <Routes>
         <Route path="/about" element = {<About/>} />
         <Route path="/request" element = {<RequestFormAppear loggedIn = {loggedIn} userData = {userData} allRequests = {allRequests} setAllRequests = {setAllRequests}/>} />
-        <Route path="/requests" element = {<Requests/>} />
+        <Route path="/requests" element = {<Requests allRequests = {allRequests} setAllRequests = {setAllRequests}/>} />
         <Route path="/login" element = {<LoginPage showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData}/>} />
         <Route path="/logout" element = {<Logout showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData} />} />
       </Routes>

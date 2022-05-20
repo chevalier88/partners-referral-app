@@ -1,28 +1,40 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import Table from "react-bootstrap/Table";
 // import axios from "axios";
 
-export default function Requests() {
-  const numbers = [1, 2, 3, 4, 5];
-  const jsxListItems = numbers.map((number) => (
-    <li key={number.toString()}>{number}</li>
-  ));
-  console.log(jsxListItems);
+export default function Requests({allRequests, setAllRequests}) {
+  console.log(allRequests);
 
-  // Create a JSX element that uses the array of HTML list elements
-  const myEl = (
-    <div>
-      <h1 className="hero-text">
-        Hey <span className="warning">Wow!</span>
-      </h1>
-      <ul>{jsxListItems}</ul>
-    </div>
-);
+  // derived from https://www.geeksforgeeks.org/how-to-parse-json-data-into-react-table-component/
+  const DisplayRequestsData = allRequests.map((request)=>{
+    return(
+      <tr>
+        <td>{allRequests.indexOf(request)}</td>
+        <td>{request.services_id}</td>
+        <td>{request.regions_id}</td>
+        <td>{String(request.request_addressed)}</td>
+      </tr>
+    )
+  });
+
   return (
     <div>
       <h1>All Requests</h1>
+        <Table responsive>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Service Request Type</th>
+              <th>Region</th>
+              <th>Completed?</th>
+            </tr>
+          </thead>
+          <tbody>
+            {DisplayRequestsData}
+          </tbody>
+      </Table>
     </div>
   );
 }
