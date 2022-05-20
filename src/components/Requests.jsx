@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
-// import axios from "axios";
+import Request from "./Request.jsx";
 
 export default function Requests({allRequests, setAllRequests}) {
   console.log(allRequests);
@@ -15,6 +15,7 @@ export default function Requests({allRequests, setAllRequests}) {
         <td>{request.services_id}</td>
         <td>{request.regions_id}</td>
         <td>{String(request.request_addressed)}</td>
+        <td><span data-feather="edit"></span></td>
       </tr>
     )
   });
@@ -29,6 +30,7 @@ export default function Requests({allRequests, setAllRequests}) {
               <th>Service Request Type</th>
               <th>Region</th>
               <th>Completed?</th>
+              <th>View/Assign</th>
             </tr>
           </thead>
           <tbody>
