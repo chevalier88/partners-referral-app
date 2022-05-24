@@ -3,6 +3,12 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import Request from "./Request.jsx";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from 'react-router-dom';
 
 export default function Requests({allRequests, setAllRequests}) {
   console.log(allRequests);
@@ -15,7 +21,9 @@ export default function Requests({allRequests, setAllRequests}) {
         <td>{request.services_id}</td>
         <td>{request.regions_id}</td>
         <td>{String(request.request_addressed)}</td>
-        <td><span data-feather="edit"></span></td>
+        <td>
+          {/* <Link to ></Link> */}
+        </td>
       </tr>
     )
   });
@@ -37,6 +45,9 @@ export default function Requests({allRequests, setAllRequests}) {
             {DisplayRequestsData}
           </tbody>
       </Table>
+      {/* <Routes>
+        <Route path="/about" element = {<Request/>} />
+      </Routes> */}
     </div>
   );
 }
