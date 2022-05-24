@@ -52,15 +52,22 @@ db.User.hasMany(db.Request);
 db.Partner.belongsTo(db.User);
 db.User.hasMany(db.Partner);
 
-// in order for the many-to-many to work we must mention the join tables here.
-db.Request.belongsToMany(db.Partner, { through: 'requests_partners' });
-db.Partner.belongsToMany(db.Request, { through: 'requests_partners' });
+// One-to-Many table here - each Partner can only have 1 dedicated Partner Manager assigned
+db.Partner.belongsTo(db.User);
+db.User.hasMany(db.Partner);
 
+// 1-M table - each request can only have 1 service
+db.Request.belongsTo(db.Service);
+db.Service.hasMany(db.Request);
+
+// 1-M table - after the Partner manager checks out the request, they update table and assign to a Partner. Only 1 Partner can ever be assigned.
+// this means each Request can only have 1 Partner
+db.Request.belongsTo(db.Partner);
+db.Partner.hasMany(db.Request);
+
+// in order for the many-to-many to work we must mention the join tables here.
 db.Request.belongsToMany(db.Region, { through: 'requests_regions' });
 db.Region.belongsToMany(db.Request, { through: 'requests_regions' });
-
-db.Request.belongsToMany(db.Service, { through: 'requests_services' });
-db.Service.belongsToMany(db.Request, { through: 'requests_services' });
 
 // we also have the special partners_services_regions.
 // this has 3 foreign keys in one table, and nothing else

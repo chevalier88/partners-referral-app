@@ -15,6 +15,13 @@ export default function initRequestModel(sequelize, DataTypes) {
           key: 'id',
         },
       },
+      servicesId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'services',
+          key: 'id',
+        },
+      },
       employeeNumbers: {
         type: DataTypes.INTEGER,
       },
@@ -23,6 +30,13 @@ export default function initRequestModel(sequelize, DataTypes) {
       },
       comments: {
         type: DataTypes.TEXT,
+      },
+      partnerId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'partners',
+          key: 'id',
+        },
       },
       requestAddressed: {
         type: DataTypes.BOOLEAN,
