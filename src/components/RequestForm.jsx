@@ -2,31 +2,29 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import Multiselect from 'react-bootstrap/DropdownMenu'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import axios from "axios";
 
-export default function RequestForm({userData, allRequests, setAllRequests}) {
+export default function RequestForm({userData}) {
   const userID = userData.id;
   console.log(userID);
   const [serviceRequested, setServiceRequested] = useState("");
-  const [regionRequested, setRegionRequested] = useState("");
+  const [regionsRequested, setRegionsRequested] = useState([]);
   const [entitiesStatus, setEntitiesStatus] = useState("");
   const [employeeNumbers, setEmployeeNumbers] = useState(0);
   const [comments, setComments] = useState("");
 
-  console.log('printing all requests so far in state...');
-  console.log(allRequests);
-
   function handleSubmit(event) {
     event.preventDefault();
     console.log('submitting form...');
-    console.log(serviceRequested, regionRequested, entitiesStatus, employeeNumbers, comments);
-    const newRequestsNow = [...allRequests];
+    console.log(serviceRequested, regionsRequested, entitiesStatus, employeeNumbers, comments);
+
     const currentSubmittedRequest = {
       referring_employee_id : userID,
       services_id: serviceRequested,
-      regions_id: regionRequested,
+      regions_id: regionsRequested,
       employee_numbers: employeeNumbers,
       entities_existing: entitiesStatus,
       comments: comments,
@@ -34,8 +32,6 @@ export default function RequestForm({userData, allRequests, setAllRequests}) {
     }
     console.log('printing currently submitted request...');
     console.log(currentSubmittedRequest);
-    newRequestsNow.push(currentSubmittedRequest);
-    setAllRequests(newRequestsNow);
 
     // axios.post('/request', {
       // referring_employee_id : userID,
@@ -71,16 +67,18 @@ export default function RequestForm({userData, allRequests, setAllRequests}) {
                   <option value="4">HR Consulting</option>
                 </Form.Control>
               </Form.Group>
-              <Form.Group controlId="regionRequested">
+              <Form.Group controlId="regionsRequested">
                 <Form.Label>Region Requested:</Form.Label>
                 <Form.Control
                   as="select"
-                  value={regionRequested}
-                  onChange={e => {
+                  multiple value={regionsRequested}
+                  onChange={e => setRegionsRequested([].slice.call(e.target.selectedOptions).map(item => item.value))}>
+
+                  {/* onChange={e => {
                     console.log("e.target.value", e.target.value);
-                    setRegionRequested(e.target.value);
-                  }}
-                >
+                    setRegionsRequested(e.target.value);
+                  }} */}
+                
                   <option value="1">Southeast Asia (ASEAN)</option>
                   <option value="2">Japan</option>
                   <option value="3">Korea</option>
