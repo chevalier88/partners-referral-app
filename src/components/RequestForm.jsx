@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Multiselect from 'react-bootstrap/DropdownMenu'
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 import axios from "axios";
 
 export default function RequestForm({userData}) {
@@ -16,7 +13,7 @@ export default function RequestForm({userData}) {
   const [employeeNumbers, setEmployeeNumbers] = useState(0);
   const [comments, setComments] = useState("");
 
-  function handleSubmit(event) {
+  function handleSubmit (event) {
     event.preventDefault();
     console.log('submitting form...');
     console.log(serviceRequested, regionsRequested, entitiesStatus, employeeNumbers, comments);
@@ -24,28 +21,21 @@ export default function RequestForm({userData}) {
     const currentSubmittedRequest = {
       referring_employee_id : userID,
       services_id: serviceRequested,
-      regions_id: regionsRequested,
       employee_numbers: employeeNumbers,
       entities_existing: entitiesStatus,
       comments: comments,
       request_addressed: false,
-    }
+      regions_id: regionsRequested,
+    };
     console.log('printing currently submitted request...');
     console.log(currentSubmittedRequest);
 
-    // axios.post('/request', {
-      // referring_employee_id : userID,
-      // employee_numbers: employeeNumbers,
-      // entities_existing: entitiesStatus,
-      // comments: comments,
-      // request_addressed: false,
-    // })
-    // .then((response)=>{
-    //   console.log('printing response from request submit...');
-    //   console.log(response.data);
-    // })
-    // .catch((error)=> console.log(error));
+    axios.post('/request', currentSubmittedRequest)
+    .then((response)=> {
+      console.log(response.data);
+    }); 
   }
+  
   return (
     <div>
       <h2>Logged In as Referring Employee! You can submit a request here:</h2>
@@ -68,7 +58,7 @@ export default function RequestForm({userData}) {
                 </Form.Control>
               </Form.Group>
               <Form.Group controlId="regionsRequested">
-                <Form.Label>Region Requested:</Form.Label>
+                <Form.Label>Region(s) Requested (Shift + Click as many relevant regions):</Form.Label>
                 <Form.Control
                   as="select"
                   multiple value={regionsRequested}
