@@ -25,7 +25,7 @@ export default function RequestForm({userData}) {
       entitiesExisting: entitiesStatus,
       comments: comments,
       requestAddressed: false,
-      regionsId: regionsRequested,
+      regions: regionsRequested,
     };
     console.log('printing currently submitted request...');
     console.log(currentSubmittedRequest);
@@ -46,6 +46,7 @@ export default function RequestForm({userData}) {
                 <Form.Control
                   as="select"
                   value={serviceRequested}
+                  placeholder = "select one"
                   onChange={e => {
                     console.log("e.target.value", e.target.value);
                     setServiceRequested(e.target.value);
@@ -58,7 +59,7 @@ export default function RequestForm({userData}) {
                 </Form.Control>
               </Form.Group>
               <Form.Group controlId="regionsRequested">
-                <Form.Label>Region(s) Requested (Shift + Click as many relevant regions):</Form.Label>
+                <Form.Label>Region(s) Requested (Ctrl + Click as many relevant regions):</Form.Label>
                 <Form.Control
                   as="select"
                   multiple value={regionsRequested}

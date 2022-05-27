@@ -23,18 +23,11 @@ export default function initRequestController(db) {
 
       const newRequest = await db.Request.create(newRequestObject);
 
-      console.log('do we even get here?');
-      console.log(newRequest);
       const { id } = newRequest;
-      console.log(id);
+      console.log(`submitted request id: ${id}`);
 
-      // db.Request.findByPk(id).then( async(request) => {
-      //   try{
-      //     await request.setRegions(regions_id); // 3 relationship are in db 
-      //   } catch(e){
-      //     console.error(e);
-      //   }
-      // });
+      await newRequest.addRegions(regions);
+
       response.send( 200 );
     } catch (error) {
       console.log(error);
