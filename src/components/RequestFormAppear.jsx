@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RequestForm from "./RequestForm.jsx";
 
-export default function RequestFormAppear({loggedIn, userData, allRequests, setAllRequests}) {
+export default function RequestFormAppear({loggedIn, userData}) {
   console.log(`loggedIn: ${loggedIn}`);
   console.log('printing userData...');
   console.log(userData.type);
@@ -19,7 +19,7 @@ export default function RequestFormAppear({loggedIn, userData, allRequests, setA
     <div>
       <h1>Request Form</h1>
       {!isPartnerManager && (
-        <RequestForm userData = {userData} allRequests = {allRequests} setAllRequests = {setAllRequests} />
+        <RequestForm userData = {userData} />
         )
       }
     </div>
