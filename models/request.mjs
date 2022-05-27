@@ -8,17 +8,10 @@ export default function initRequestModel(sequelize, DataTypes) {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      referringEmployeeId: {
+      userId: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'users',
-          key: 'id',
-        },
-      },
-      servicesId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'services',
+          model: 'user',
           key: 'id',
         },
       },
@@ -31,13 +24,6 @@ export default function initRequestModel(sequelize, DataTypes) {
       comments: {
         type: DataTypes.TEXT,
       },
-      partnerId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'partners',
-          key: 'id',
-        },
-      },
       requestAddressed: {
         type: DataTypes.BOOLEAN,
       },
@@ -48,6 +34,20 @@ export default function initRequestModel(sequelize, DataTypes) {
       updatedAt: {
         allowNull: false,
         type: DataTypes.DATE,
+      },
+      serviceId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'service',
+          key: 'id',
+        },
+      },
+      partnerId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'partner',
+          key: 'id',
+        },
       },
     },
     {

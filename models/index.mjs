@@ -65,7 +65,7 @@ db.Service.hasMany(db.Request);
 db.Request.belongsTo(db.Partner);
 db.Partner.hasMany(db.Request);
 
-// in order for the many-to-many to work we must mention the join tables here.
+// in order for the Many-to-Many to work we must mention the join tables here.
 db.Request.belongsToMany(db.Region, { through: 'requests_regions' });
 db.Region.belongsToMany(db.Request, { through: 'requests_regions' });
 

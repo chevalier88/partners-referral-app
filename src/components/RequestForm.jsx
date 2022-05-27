@@ -19,13 +19,13 @@ export default function RequestForm({userData}) {
     console.log(serviceRequested, regionsRequested, entitiesStatus, employeeNumbers, comments);
 
     const currentSubmittedRequest = {
-      referring_employee_id : userID,
-      services_id: serviceRequested,
-      employee_numbers: employeeNumbers,
-      entities_existing: entitiesStatus,
+      userId : userID,
+      serviceId: serviceRequested,
+      employeeNumbers: employeeNumbers,
+      entitiesExisting: entitiesStatus,
       comments: comments,
-      request_addressed: false,
-      regions_id: regionsRequested,
+      requestAddressed: false,
+      regionsId: regionsRequested,
     };
     console.log('printing currently submitted request...');
     console.log(currentSubmittedRequest);

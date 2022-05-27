@@ -3,26 +3,26 @@ export default function initRequestController(db) {
     console.log('login controlling printing request...')
     console.log(request.body);
     try {
-      const {referring_employee_id, employee_numbers, entities_existing, comments, request_addressed, services_id, regions_id } = request.body;
-      console.log(`employee_numbers: ${employee_numbers}`);
-      console.log('regions_id:')
-      console.log(regions_id);
+      const {userId, employeeNumbers, entitiesExisting, comments, requestAddressed, serviceId, regions } = request.body;
+      console.log(`employeeNumbers: ${employeeNumbers}`);
+      console.log('regions:')
+      console.log(regions);
       
       const newRequestObject = {
-        referring_employee_id: referring_employee_id,
-        employee_numbers: Number(employee_numbers),
-        entities_existing: entities_existing,
+        userId: userId,
+        employeeNumbers: Number(employeeNumbers),
+        entitiesExisting: entitiesExisting,
         comments: comments,
-        request_addressed: request_addressed,
-        services_id: Number(services_id),
-        partner_id: null,
-        // created_at: new Date(),
-        // updated_at: new Date(),
+        requestAddressed: requestAddressed,
+        serviceId: Number(serviceId),
+        partnerId: null,
       };
 
       console.log('printing newRequestObject:');
       console.log(newRequestObject);
+
       const newRequest = await db.Request.create(newRequestObject);
+
       console.log('do we even get here?');
       console.log(newRequest);
       const { id } = newRequest;
