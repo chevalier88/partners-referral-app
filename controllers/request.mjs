@@ -26,7 +26,15 @@ export default function initRequestController(db) {
       const { id } = newRequest;
       console.log(`submitted request id: ${id}`);
 
-      await newRequest.addRegions(regions);
+      // await newRequest.addRegions(regions);
+
+      await regions.forEach((region) => {
+        console.log(region);
+        db.RequestRegion.create({
+          requestId: id,
+          regionId: Number(region),
+        });
+      });
 
       response.send( 200 );
     } catch (error) {

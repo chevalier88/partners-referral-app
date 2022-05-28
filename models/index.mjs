@@ -9,6 +9,8 @@ import initRegionModel from './region.mjs';
 import initServiceModel from './service.mjs';
 import initCoverageModel from './coverage.mjs';
 
+import initRequestRegionModel from './requestRegion.mjs';
+
 const env = process.env.NODE_ENV || 'development';
 
 const config = allConfig[env];
@@ -44,6 +46,8 @@ db.Service = initServiceModel(sequelize, Sequelize.DataTypes);
 db.User = initUserModel(sequelize, Sequelize.DataTypes);
 db.Coverage = initCoverageModel(sequelize, Sequelize.DataTypes);
 
+db.RequestRegion = initRequestRegionModel(sequelize, Sequelize.DataTypes);
+
 // One-to-Many table here - each Request can only have 1 submitting person, ther referring employee
 db.Request.belongsTo(db.User);
 db.User.hasMany(db.Request);
@@ -67,9 +71,13 @@ db.Partner.hasMany(db.Request);
 
 // in order for the Many-to-Many to work we must mention the join tables here.
 
-db.Request.belongsToMany(db.Region, { through: 'requests_regions', foreignKey: 'requests_id' });
-db.Region.belongsToMany(db.Request, { through: 'requests_regions', foreignKey: 'regions_id' });
+db.Request.belongsToMany(db.Region, { through: db.RequestRegion,});
+db.Region.belongsToMany(db.Request, { through: db.RequestRegion,});
 
+// db.Request.hasMany(db.RequestRegion);
+// db.RequestRegion.belongsTo(db.Request);
+// db.Region.hasMany(db.RequestRegion);
+// db.RequestRegion.belongsTo(db.Region);
 
 // we also have the special partners_services_regions.
 // this has 3 foreign keys in one table, and nothing else
