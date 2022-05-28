@@ -35,47 +35,63 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {row.id}
+          <Typography variant="body" gutterBottom component="div">
+            {row.id}
+          </Typography>
         </TableCell>
-        <TableCell align="left">{row.createdAt}</TableCell>
+        <TableCell align="left">
+          <Typography variant="body" gutterBottom component="div">
+            {row.createdAt}
+          </Typography>
+        </TableCell>
         <TableCell align="left">{row.service.name}</TableCell>
         <TableCell align="left">
           {row.regions.map((region) => (         
             <p key={region.name.toString()}>{region.name}</p>
           ))}
         </TableCell>
-        <TableCell align="left">{row.protein}</TableCell>
-        <TableCell align="left">{row.protein}</TableCell>
+        <TableCell align="left">{String(row.requestAddressed)}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                History
+              <Typography variant="subtitle1" gutterBottom component="div">
+                Referred by {row.user.name}
+              </Typography>
+              <Typography variant="subtitle2" gutterBottom component="div">
+                {row.user.email}
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="left">Amount</TableCell>
-                    <TableCell align="left">Total price ($)</TableCell>
+                    <TableCell>Comments</TableCell>
+                    <TableCell>Does the Prospect/Client Own Entities?</TableCell>
+                    <TableCell align="left">How Many Employees?</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {/* {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row">
-                        {historyRow.date}
-                      </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="left">{historyRow.amount}</TableCell>
-                      <TableCell align="left">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
-                    </TableRow>
-                  ))} */}
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      {row.comments}
+                    </TableCell>
+                    <TableCell>{row.entitiesExisting}</TableCell>
+                    <TableCell align="left">{row.employeeNumbers}</TableCell>
+                  </TableRow>
+                </TableBody>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Assigned Partner Manager</TableCell>
+                    <TableCell>Edit/Delete</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      {row.comments}
+                    </TableCell>
+                    <TableCell></TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </Box>
@@ -111,8 +127,7 @@ export default function CollapsibleTable({loggedIn, userData, allRequests, setAl
             <TableCell align="left">Date Created</TableCell>
             <TableCell align="left">Request Type</TableCell>
             <TableCell align="left">Destination Region(s)</TableCell>
-            <TableCell align="left">Submitting Employee</TableCell>
-            <TableCell align="left">Referral Status</TableCell>
+            <TableCell align="left">Referred Out?</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
