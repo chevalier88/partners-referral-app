@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NavbarComponent from './components/NavbarComponent.jsx';
+import "bootstrap/js/src/collapse.js";
 
 export default function App() {
   const [showLogin, setShowLogin] = useState(true);

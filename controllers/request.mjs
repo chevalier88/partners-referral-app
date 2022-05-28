@@ -46,15 +46,12 @@ export default function initRequestController(db) {
   const getAllRequests = async (request, response) => {
     try {
       const requests = await db.Request.findAll({
-        // include:{
-        //   model: db.User,
-        // }
         include:[
           db.User,
           db.Service,
           db.RequestRegion,
+          db.Region,
         ]
-
       });
 
       console.log(requests[0].user.name);
