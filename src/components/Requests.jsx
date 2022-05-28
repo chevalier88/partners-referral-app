@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
@@ -9,8 +9,24 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import axios from "axios";
 
 export default function Requests({allRequests, setAllRequests}) {
+
+  useEffect(() => {
+    axios.get('/requests')
+      .then((result) => {
+        const { data } = result;
+        console.log(data);
+        const newArray = [];
+        for (let i = 0; i < data.length; i++) {
+          newArray.push(data[i]);
+        }
+        setAllRequests(newArray);
+      });
+  }, []);
+
+  console.log('checking out all Requests...')
   console.log(allRequests);
 
   // derived from https://www.geeksforgeeks.org/how-to-parse-json-data-into-react-table-component/
@@ -18,15 +34,16 @@ export default function Requests({allRequests, setAllRequests}) {
     return(
       <tr>
         <td>{allRequests.indexOf(request)}</td>
-        <td>{request.services_id}</td>
-        <td>{request.regions_id}</td>
-        <td>{String(request.request_addressed)}</td>
+        <td>{request.serviceName}</td>
+        <td>{request.user.name}</td>
+        <td>{String(request.requestAddressed)}</td>
         <td>
           {/* <Link to ></Link> */}
         </td>
       </tr>
     )
   });
+
 
   return (
     <div>
@@ -36,7 +53,7 @@ export default function Requests({allRequests, setAllRequests}) {
             <tr>
               <th>#</th>
               <th>Service Request Type</th>
-              <th>Region</th>
+              <th>Submitted By</th>
               <th>Completed?</th>
               <th>View/Assign</th>
             </tr>
@@ -44,10 +61,12 @@ export default function Requests({allRequests, setAllRequests}) {
           <tbody>
             {DisplayRequestsData}
           </tbody>
-      </Table>
+        </Table>
       {/* <Routes>
         <Route path="/about" element = {<Request/>} />
       </Routes> */}
+
+
     </div>
   );
 }

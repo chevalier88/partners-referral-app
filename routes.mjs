@@ -11,6 +11,8 @@ export default function routes(app) {
 
   app.post('/request', RequestController.submitRequest);
 
+  app.get('/requests', RequestController.getAllRequests);
+
   // special JS page. Include the webpack index.html file
   app.get('/', (request, response) => {
     response.sendFile(resolve('dist', 'main.html'));

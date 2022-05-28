@@ -43,7 +43,38 @@ export default function initRequestController(db) {
     }
   };
 
+  const getAllRequests = async (request, response) => {
+    try {
+      const requests = await db.Request.findAll({
+        include:{
+          model: db.User,
+        }
+      });
+
+      console.log(requests[0].user.name);
+
+      // const test = await requests.forEach((request) => {
+      //   db.Service.findOne({
+      //     where: {
+      //       id : request.dataValues.serviceId,
+      //     }
+      //   }).then((oneServiceResult) => {
+      //     console.log(oneServiceResult.dataValues.name);
+      //     request.dataValues["serviceName"] = oneServiceResult.dataValues.name;
+      //     console.log(request);
+      //     parsedRequests.push(request.dataValues);
+      //     console.log(parsedRequests);
+      //   }).catch((error) => console.log(error));
+      // });
+
+      console.log('printing after the appending...');
+      response.send(requests);
+
+    } catch (error) {
+      console.log(error);
+    };
+  }
   return {
-    submitRequest,
+    submitRequest, getAllRequests
   };
 }
