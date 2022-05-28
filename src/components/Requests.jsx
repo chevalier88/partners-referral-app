@@ -34,7 +34,11 @@ export default function Requests({allRequests, setAllRequests}) {
     return(
       <tr>
         <td>{allRequests.indexOf(request)}</td>
+        <td>{request.createdAt}</td>
         <td>{request.service.name}</td>
+        <td>{request.requests_regions.map((region) => {
+          `${region.regionId}`
+        })}</td>
         <td>{request.user.name}</td>
         <td>{String(request.requestAddressed)}</td>
         <td>
@@ -47,12 +51,14 @@ export default function Requests({allRequests, setAllRequests}) {
 
   return (
     <div>
-      <h1>All Requests</h1>
+      <h1>All Partner Requests</h1>
         <Table responsive>
           <thead>
             <tr>
               <th>#</th>
-              <th>Service Request Type</th>
+              <th>Date Created</th>
+              <th>Request Type</th>
+              <th>Regions</th>
               <th>Submitted By</th>
               <th>Completed?</th>
               <th>View/Assign</th>

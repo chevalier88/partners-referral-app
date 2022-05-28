@@ -105,7 +105,7 @@ export default function RequestForm({userData}) {
                 />
               </Form.Group>
               <Form.Group controlId="comments">
-                  <Form.Label>Please write as much detail as you can about your request below:
+                  <Form.Label>Please write as much detail as you can about your request below, including your prospect/client's name, company, title and email address:
                   </Form.Label>
                   <Form.Control 
                     autoFocus
