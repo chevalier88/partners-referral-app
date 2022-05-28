@@ -9,14 +9,14 @@ export default function initRequestRegionModel(sequelize, DataTypes) {
     requestId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'requests',
+        model: 'request',
         key: 'id',
       },
     },
     regionId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'regions',
+        model: 'region',
         key: 'id',
       },
     },

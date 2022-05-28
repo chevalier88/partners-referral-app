@@ -34,7 +34,7 @@ export default function Requests({allRequests, setAllRequests}) {
     return(
       <tr>
         <td>{allRequests.indexOf(request)}</td>
-        <td>{request.serviceName}</td>
+        <td>{request.service.name}</td>
         <td>{request.user.name}</td>
         <td>{String(request.requestAddressed)}</td>
         <td>

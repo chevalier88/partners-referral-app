@@ -74,10 +74,10 @@ db.Partner.hasMany(db.Request);
 db.Request.belongsToMany(db.Region, { through: db.RequestRegion,});
 db.Region.belongsToMany(db.Request, { through: db.RequestRegion,});
 
-// db.Request.hasMany(db.RequestRegion);
-// db.RequestRegion.belongsTo(db.Request);
-// db.Region.hasMany(db.RequestRegion);
-// db.RequestRegion.belongsTo(db.Region);
+db.Request.hasMany(db.RequestRegion);
+db.RequestRegion.belongsTo(db.Request);
+db.Region.hasMany(db.RequestRegion);
+db.RequestRegion.belongsTo(db.Region);
 
 // we also have the special partners_services_regions.
 // this has 3 foreign keys in one table, and nothing else
