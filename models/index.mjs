@@ -83,14 +83,14 @@ db.RequestRegion.belongsTo(db.Region);
 // this has 3 foreign keys in one table, and nothing else
 // stack overflow offers this solution to associate the partners, services and regions tables into one joining table which doesn't require creation of joining table
 // https://stackoverflow.com/questions/60552715/sequelize-association-many-to-many-3-foreign-keys
-db.Partner.hasMany(db.Coverage, { foreignKey: 'partners_id' })
-db.Coverage.belongsTo(db.Partner, { foreignKey: 'partners_id' })
+db.Partner.hasMany(db.Coverage, { foreignKey: 'partnerId' })
+db.Coverage.belongsTo(db.Partner, { foreignKey: 'partnerId' })
 
-db.Service.hasMany(db.Coverage, { foreignKey: 'services_id' })
-db.Coverage.belongsTo(db.Service, { foreignKey: 'services_id' })
+db.Service.hasMany(db.Coverage, { foreignKey: 'serviceId' })
+db.Coverage.belongsTo(db.Service, { foreignKey: 'serviceId' })
 
-db.Region.hasMany(db.Coverage, { foreignKey: 'regions_id' })
-db.Coverage.belongsTo(db.Region, { foreignKey: 'regions_id' })
+db.Region.hasMany(db.Coverage, { foreignKey: 'regionId' })
+db.Coverage.belongsTo(db.Region, { foreignKey: 'regionId' })
 
 
 db.sequelize = sequelize;

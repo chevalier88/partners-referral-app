@@ -81,7 +81,7 @@ function Row(props) {
                 </TableBody>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Assigned Partner Manager</TableCell>
+                    <TableCell>Recommended Partner Manager</TableCell>
                     <TableCell>Edit/Delete</TableCell>
                   </TableRow>
                 </TableHead>

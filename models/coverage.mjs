@@ -8,24 +8,24 @@ export default function initCoverageModel(sequelize, DataTypes) {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      partnersId: {
+      partnerId: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'partners',
+          model: 'partner',
           key: 'id',
         },
       },
-      servicesId: {
+      serviceId: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'services',
+          model: 'service',
           key: 'id',
         },
       },
-      regionsId: {
+      regionId: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'regions',
+          model: 'region',
           key: 'id',
         },
       },

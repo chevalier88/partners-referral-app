@@ -11,7 +11,7 @@ export default function initPartnerModel(sequelize, DataTypes) {
       name: {
         type: DataTypes.TEXT,
       },
-      partnerManagerId: {
+      userId: {
         type: DataTypes.TEXT,
         references:{
           model:'user',
