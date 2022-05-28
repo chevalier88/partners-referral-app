@@ -88,7 +88,7 @@ export default function Requests({allRequests, setAllRequests}) {
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            {/* <TableCell /> */}
+            <TableCell />
             <TableCell>#</TableCell>
             <TableCell align="right">Date Created</TableCell>
             <TableCell align="right">Request Type</TableCell>

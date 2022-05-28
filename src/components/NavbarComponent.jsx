@@ -22,7 +22,7 @@ export default function NavbarComponent({showLogin, setShowLogin, loggedIn, setL
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to = {"/about"}>Collapsible Table Test</Nav.Link>
+              <Nav.Link as={Link} to = {"/test"}>Collapsible Table Test</Nav.Link>
               <Nav.Link as={Link} to = {"/request"}>Submit New Request</Nav.Link>
               <Nav.Link as={Link} to = {"/requests"}>View All Requests</Nav.Link>
               <Nav.Link as={Link} to = {"/login"}>Login</Nav.Link>
@@ -32,7 +32,7 @@ export default function NavbarComponent({showLogin, setShowLogin, loggedIn, setL
         </Container>
       </Navbar>
       <Routes>
-        <Route path="/about" element = {<CollapsibleTable/>} />
+        <Route path="/test" element = {<CollapsibleTable loggedIn = {loggedIn} userData = {userData} allRequests = {allRequests} setAllRequests = {setAllRequests}/>} />
         <Route path="/request" element = {<RequestFormAppear loggedIn = {loggedIn} userData = {userData} allRequests = {allRequests} setAllRequests = {setAllRequests}/>} />
         <Route path="/requests" element = {<Requests allRequests = {allRequests} setAllRequests = {setAllRequests}/>} />
         <Route path="/login" element = {<LoginPage showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData}/>} />
