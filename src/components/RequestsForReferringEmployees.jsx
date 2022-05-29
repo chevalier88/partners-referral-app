@@ -82,7 +82,7 @@ function Row(props) {
                 <TableHead>
                   <TableRow>
                     <TableCell>Recommended Partner Manager</TableCell>
-                    <TableCell>Edit/Delete</TableCell>
+                    {/* <TableCell>Edit/Delete</TableCell> */}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -102,7 +102,7 @@ function Row(props) {
   );
 }
 
-export default function CollapsibleTable({loggedIn, userData, allRequests, setAllRequests}) {
+export default function RequestsForReferringEmployees({allRequests, setAllRequests}) {
 
   useEffect(() => {
     axios.get('/requests')

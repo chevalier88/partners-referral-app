@@ -57,8 +57,6 @@ export default function initRequestController(db) {
               include: [db.Service, db.Partner],
             }]
           },
-          // db.Coverage,
-          // db.Partner,
         ]
       });
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RequestForm from "./RequestForm.jsx";
+import Notification from "./Notification.jsx";
 
 export default function RequestFormAppear({loggedIn, userData}) {
   console.log(`loggedIn: ${loggedIn}`);
@@ -14,14 +15,26 @@ export default function RequestFormAppear({loggedIn, userData}) {
   } else {
     console.log(`isPartnerManager: ${isPartnerManager}`);
   }
+  
+  const [notificationText, setNotificationText] = useState("")
+
+  let whatWillAppear;
+
+  if (loggedIn) {
+    if (userData.type === 'referring employee') {
+      whatWillAppear = <RequestForm userData = {userData} />
+    } else {
+      whatWillAppear = 'Sorry, only non-Partner Manager Employees can Submit Requests for Partner Referrals!'
+    }
+  } else {
+    whatWillAppear = < Notification loggedIn = {loggedIn} userData = {userData} notificationText = {notificationText} setNotificationText = {setNotificationText} />;
+  };
+
 
   return (
     <div>
       <h1>Request Form</h1>
-      {!isPartnerManager && (
-        <RequestForm userData = {userData} />
-        )
-      }
+      {whatWillAppear}
     </div>
   );
 }

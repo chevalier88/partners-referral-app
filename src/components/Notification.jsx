@@ -12,9 +12,13 @@ export default function Notification({loggedIn, loginError, userData, notificati
     console.log(`loginError: ${loginError}`);
     setNotificationText('Login Error detected! Please try logging in again...');
   }
+  if (loggedIn === false){
+    setNotificationText(`Please login!`);
+  }
+
   return (
     <div>
-      <h1>{notificationText}</h1>
+      {notificationText}
     </div>
   )
 };
