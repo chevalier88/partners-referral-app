@@ -54,16 +54,6 @@ export default function initRequestController(db) {
           db.RequestRegion,
           {
             model: db.Region,
-            // include: [{
-            //   model: db.Coverage, 
-            //   include: [
-            //     db.Service, 
-            //     {
-            //       model: db.Partner,
-            //       include: db.User 
-            //     }
-            //   ],
-            // }]
           },
         ]
       });
@@ -77,6 +67,14 @@ export default function initRequestController(db) {
     };
   }
 
+  // There's a lot going on here so comments are necessary
+  // This controller function will look at one request, 
+  // trace it through the many to many table (using eager loading)
+  // and then trace through another many to many table
+  // before finally pulling out relevant rows 
+  // which contain the critical Partner name and identity
+  // with which we will in turn assign requests to. 
+  // This is the core of the whole App.
   const getPartnersForOneRequest = async (request, response) => {
     console.log('getting single row request body...');
     console.log(request.params.id);
@@ -135,7 +133,56 @@ export default function initRequestController(db) {
       console.log(error);
     };
   }
+
+  const updateRequestAfterAssigning = async (request, response) => {
+    try {
+      console.log('receiving update 1 request...');
+      console.log(request.body);
+
+      const partnerId = Number(request.body.partnerId);
+      const requestId = request.body.requestId;
+
+      if (partnerId === null){
+        console.log("null partnerId detected")
+        console.log(`requestId: ${requestId}, partnerId: ${partnerId}`);
+
+        const updateOneRequest = await db.Request.update(
+          { 
+            requestAddressed: true,
+          },
+          {
+            where: {
+              id : requestId,
+            }
+          }
+        );
+        console.log(updateOneRequest);
+        response.send(updateOneRequest);
+
+      } else if (partnerId !== null) {
+        console.log(`partnerId is ${partnerId}, type ${typeof(partnerId)}`);
+        const updateOneRequest = await db.Request.update(
+          { 
+            requestAddressed: true,
+            partnerId: partnerId,
+          },
+          {
+            where: {
+              id : requestId,
+            }
+          }
+        );
+        console.log(updateOneRequest);
+        response.send(updateOneRequest);
+      }
+    } catch (error) {
+      console.log(error);
+    };
+  }
   return {
-    submitRequest, getAllRequests, getPartnersForOneRequest
+    submitRequest, 
+    getAllRequests, 
+    getPartnersForOneRequest, 
+    updateRequestAfterAssigning
   };
 }

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect} from "react";
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -18,9 +17,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import axios from 'axios';
 import PartnersForOneRequest from './RecommendPartnerData.jsx';
 
-function Row(props) {
-  console.log(props);
-  const { row } = props;
+function Row({row, allRequests, setAllRequests}) {
+  console.log(row);
   const [open, setOpen] = useState(false);
 
   return (
@@ -88,7 +86,7 @@ function Row(props) {
                 </TableBody>
               </Table>
               <br></br>
-              < PartnersForOneRequest rowId = {row.id}/> 
+              < PartnersForOneRequest rowId = {row.id} allRequests = {allRequests} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed}/> 
             </Box>
           </Collapse>
         </TableCell>
@@ -125,7 +123,7 @@ export default function RequestsForPartnerManagers({allRequests, setAllRequests}
         </TableHead>
         <TableBody>
           {allRequests.map((row) => (
-            <Row key={row.name} row={row} />
+            <Row key={row.name} row={row} allRequests = {allRequests} setAllRequests = {setAllRequests}/>
           ))}
         </TableBody>
       </Table>
