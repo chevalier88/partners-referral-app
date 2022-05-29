@@ -15,10 +15,11 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import axios from 'axios';
-import PartnersForOneRequest from './RecommendPartnerData.jsx';
+import RecommendPartnerData from './RecommendPartnerData.jsx';
 
 function Row({row, allRequests, setAllRequests}) {
   console.log(row);
+  console.log(row.partnerId);
   const [open, setOpen] = useState(false);
 
   return (
@@ -86,7 +87,7 @@ function Row({row, allRequests, setAllRequests}) {
                 </TableBody>
               </Table>
               <br></br>
-              < PartnersForOneRequest rowId = {row.id} allRequests = {allRequests} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed}/> 
+              < RecommendPartnerData rowId = {row.id} allRequests = {allRequests} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed} rowPartnerIdAssigned = {row.partnerId} /> 
             </Box>
           </Collapse>
         </TableCell>
@@ -105,6 +106,7 @@ export default function RequestsForPartnerManagers({allRequests, setAllRequests}
           newArray.push(data[i]);
         }
         setAllRequests(newArray);
+        console.log(allRequests);
       });
   }, []);
 

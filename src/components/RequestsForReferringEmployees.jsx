@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect} from "react";
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -16,10 +15,10 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import axios from 'axios';
+import PartnersForOneRequest from './RecommendPartnerData.jsx';
 
-function Row(props) {
-  console.log(props);
-  const { row } = props;
+function Row({row, allRequests, setAllRequests}) {
+  console.log(row);
   const [open, setOpen] = useState(false);
 
   return (
@@ -65,9 +64,15 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Comments</TableCell>
-                    <TableCell>Does the Prospect/Client Own Entities?</TableCell>
-                    <TableCell align="left">How Many Employees?</TableCell>
+                    <TableCell>
+                      Comments
+                    </TableCell>
+                    <TableCell>
+                      Does the Prospect/Client Own Entities?
+                    </TableCell>
+                    <TableCell>
+                      How Many Employees?
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -76,24 +81,12 @@ function Row(props) {
                       {row.comments}
                     </TableCell>
                     <TableCell>{row.entitiesExisting}</TableCell>
-                    <TableCell align="left">{row.employeeNumbers}</TableCell>
-                  </TableRow>
-                </TableBody>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Recommended Partner Manager</TableCell>
-                    {/* <TableCell>Edit/Delete</TableCell> */}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell component="th" scope="row">
-                      {row.comments}
-                    </TableCell>
-                    <TableCell></TableCell>
+                    <TableCell>{row.employeeNumbers}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
+              <br></br>
+              < PartnersForOneRequest rowId = {row.id} allRequests = {allRequests} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed}/> 
             </Box>
           </Collapse>
         </TableCell>
@@ -103,12 +96,10 @@ function Row(props) {
 }
 
 export default function RequestsForReferringEmployees({allRequests, setAllRequests}) {
-
   useEffect(() => {
     axios.get('/requests')
       .then((result) => {
         const { data } = result;
-        console.log(data);
         const newArray = [];
         for (let i = 0; i < data.length; i++) {
           newArray.push(data[i]);
@@ -127,12 +118,12 @@ export default function RequestsForReferringEmployees({allRequests, setAllReques
             <TableCell align="left">Date Created</TableCell>
             <TableCell align="left">Request Type</TableCell>
             <TableCell align="left">Destination Region(s)</TableCell>
-            <TableCell align="left">Referred Out?</TableCell>
+            <TableCell align="left">Query Addressed?</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {allRequests.map((row) => (
-            <Row key={row.name} row={row} />
+            <Row key={row.name} row={row} allRequests = {allRequests} setAllRequests = {setAllRequests}/>
           ))}
         </TableBody>
       </Table>

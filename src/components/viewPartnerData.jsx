@@ -9,8 +9,9 @@ import TableRow from '@mui/material/TableRow';
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { CatchingPokemonSharp } from "@mui/icons-material";
 
-export default function RecommendPartnerData({rowId, setAllRequests, rowAddressed, rowPartnerIdAssigned}){
+export default function PartnersForOneRequest({rowId, allRequests, setAllRequests, rowAddressed, rowPartnerIdAssigned}){
   const [partnerData, setPartnerData] = useState([]);
   const [partnerSelected, setPartnerSelected] = useState("");
   const [partnerAssigned, setPartnerAssigned] = useState("");
@@ -51,7 +52,17 @@ export default function RecommendPartnerData({rowId, setAllRequests, rowAddresse
         .then((response)=> {
             console.log('receiving updated row info...');
             console.log(response.data);
-
+            // useEffect(() => {
+            //     axios.get('/requests')
+            //     .then((result) => {
+            //         const { data } = result;
+            //         const newArray = [];
+            //         for (let i = 0; i < data.length; i++) {
+            //         newArray.push(data[i]);
+            //         }
+            //         setAllRequests(newArray);
+            //     });
+            // }, []);
             return axios.get('/requests')
                 .then((result) => {
                     const { data } = result;
