@@ -21,6 +21,8 @@ export default function routes(app) {
   
   app.get('/partner/:id', PartnerController.getAssignedPartnerNameById);
 
+  app.delete('/request/:id', RequestController.deleteOneRequest);
+
   app.get('/', (request, response) => {
     response.sendFile(resolve('dist', 'main.html'));
   });

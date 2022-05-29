@@ -180,10 +180,38 @@ export default function initRequestController(db) {
       console.log(error);
     };
   }
+
+  const deleteOneRequest = async (request, response) => {
+    try {
+      console.log('deleting one request...');
+      const requestId = request.params.id;
+      console.log('printing requestId...');
+      console.log(requestId);
+
+      const deleteJoin = await db.RequestRegion.destroy({
+        where : {
+          requestId: request.params.id
+        }
+      })
+
+      const deletedRequest = await db.Request.destroy({
+        where : {
+          id: requestId,
+        },
+        include:{
+          model: db.RequestRegion,
+        },
+      });
+      console.log(deletedRequest);
+    } catch (error) {
+      console.log(error);
+    };
+  }
   return {
     submitRequest, 
     getAllRequests, 
     getPartnersForOneRequest, 
-    updateRequestAfterAssigning
+    updateRequestAfterAssigning,
+    deleteOneRequest,
   };
 }

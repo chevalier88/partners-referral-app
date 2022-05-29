@@ -15,7 +15,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import axios from 'axios';
-import PartnersForOneRequest from './RecommendPartnerData.jsx';
+import ViewPartnerData from './ViewPartnerData.jsx';
+import UserMoreMenu from './UserMoreMenu.jsx';
 
 function Row({row, allRequests, setAllRequests}) {
   console.log(row);
@@ -50,6 +51,9 @@ function Row({row, allRequests, setAllRequests}) {
           ))}
         </TableCell>
         <TableCell align="left">{String(row.requestAddressed)}</TableCell>
+        <TableCell align="left">
+          <UserMoreMenu targetRow={row.id} setAllRequests = {setAllRequests} />
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -86,7 +90,7 @@ function Row({row, allRequests, setAllRequests}) {
                 </TableBody>
               </Table>
               <br></br>
-              < PartnersForOneRequest rowId = {row.id} allRequests = {allRequests} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed}/> 
+              <ViewPartnerData rowId = {row.id} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed} rowPartnerIdAssigned = {row.partnerId} />  
             </Box>
           </Collapse>
         </TableCell>
@@ -119,6 +123,8 @@ export default function RequestsForReferringEmployees({allRequests, setAllReques
             <TableCell align="left">Request Type</TableCell>
             <TableCell align="left">Destination Region(s)</TableCell>
             <TableCell align="left">Query Addressed?</TableCell>
+            <TableCell align="left">
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

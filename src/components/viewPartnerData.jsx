@@ -9,9 +9,8 @@ import TableRow from '@mui/material/TableRow';
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { CatchingPokemonSharp } from "@mui/icons-material";
 
-export default function PartnersForOneRequest({rowId, allRequests, setAllRequests, rowAddressed, rowPartnerIdAssigned}){
+export default function ViewPartnerData({rowId, setAllRequests, rowAddressed, rowPartnerIdAssigned}){
   const [partnerData, setPartnerData] = useState([]);
   const [partnerSelected, setPartnerSelected] = useState("");
   const [partnerAssigned, setPartnerAssigned] = useState("");
@@ -52,17 +51,7 @@ export default function PartnersForOneRequest({rowId, allRequests, setAllRequest
         .then((response)=> {
             console.log('receiving updated row info...');
             console.log(response.data);
-            // useEffect(() => {
-            //     axios.get('/requests')
-            //     .then((result) => {
-            //         const { data } = result;
-            //         const newArray = [];
-            //         for (let i = 0; i < data.length; i++) {
-            //         newArray.push(data[i]);
-            //         }
-            //         setAllRequests(newArray);
-            //     });
-            // }, []);
+
             return axios.get('/requests')
                 .then((result) => {
                     const { data } = result;
@@ -77,29 +66,7 @@ export default function PartnersForOneRequest({rowId, allRequests, setAllRequest
   
   // write ternary operator for if partnerData is null
   if (rowAddressed === false) {
-    whatWillAppear = 
-        <Form onSubmit={handleSubmit}>
-            <Form.Group controlId = "partnerSelected">
-                <Form.Control
-                    as="select"
-                    value={partnerSelected}
-                    placeholder = "select one"
-                    onChange={e => {
-                        console.log("partner value selected:", e.target.value);
-                        setPartnerSelected(e.target.value);
-                    }}>
-                    {partnerData.map((partner) => (         
-                        <option value={partner.id.toString()} key={partner.name.toString()}>
-                            {partner.name}
-                        </option>
-                    ))}
-                    <option value = "" key = "null">-- REJECT; Don't Assign --</option>
-                </Form.Control>
-            </Form.Group>
-            <Button block size="sm-3" type="submit" >
-                Submit
-            </Button>
-        </Form>
+    whatWillAppear = <p> PENDING Assignment</p>
     } else if (rowAddressed === true && rowPartnerIdAssigned === null) {
 
         whatWillAppear = <p> Request was addressed, but REJECTED! </p>

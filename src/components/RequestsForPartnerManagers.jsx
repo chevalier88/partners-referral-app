@@ -51,6 +51,7 @@ function Row({row, allRequests, setAllRequests}) {
           ))}
         </TableCell>
         <TableCell align="left">{String(row.requestAddressed)}</TableCell>
+        <TableCell align="left"></TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -87,7 +88,7 @@ function Row({row, allRequests, setAllRequests}) {
                 </TableBody>
               </Table>
               <br></br>
-              < RecommendPartnerData rowId = {row.id} allRequests = {allRequests} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed} rowPartnerIdAssigned = {row.partnerId} /> 
+              < RecommendPartnerData rowId = {row.id} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed} rowPartnerIdAssigned = {row.partnerId} /> 
             </Box>
           </Collapse>
         </TableCell>
@@ -121,6 +122,8 @@ export default function RequestsForPartnerManagers({allRequests, setAllRequests}
             <TableCell align="left">Request Type</TableCell>
             <TableCell align="left">Destination Region(s)</TableCell>
             <TableCell align="left">Query Addressed?</TableCell>
+            <TableCell align="left">
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
