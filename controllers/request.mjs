@@ -54,7 +54,13 @@ export default function initRequestController(db) {
             model: db.Region,
             include: [{
               model: db.Coverage, 
-              include: [db.Service, db.Partner],
+              include: [
+                db.Service, 
+                {
+                  model: db.Partner,
+                  include: db.User 
+                }
+              ],
             }]
           },
         ]
