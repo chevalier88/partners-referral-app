@@ -48,8 +48,18 @@ export default function PartnersForOneRequest({rowId, allRequests, setAllRequest
         .then((response)=> {
             console.log('receiving updated row info...');
             console.log(response.data);
-            useEffect(() => {
-                axios.get('/requests')
+            // useEffect(() => {
+            //     axios.get('/requests')
+            //     .then((result) => {
+            //         const { data } = result;
+            //         const newArray = [];
+            //         for (let i = 0; i < data.length; i++) {
+            //         newArray.push(data[i]);
+            //         }
+            //         setAllRequests(newArray);
+            //     });
+            // }, []);
+            return axios.get('/requests')
                 .then((result) => {
                     const { data } = result;
                     const newArray = [];
@@ -57,8 +67,7 @@ export default function PartnersForOneRequest({rowId, allRequests, setAllRequest
                     newArray.push(data[i]);
                     }
                     setAllRequests(newArray);
-                });
-            }, []);            
+                });   
         }); 
   }
   
@@ -98,8 +107,7 @@ export default function PartnersForOneRequest({rowId, allRequests, setAllRequest
                 <TableRow>
                     <TableCell>Recommended Partner(s)</TableCell>
                     <TableCell>Partner Contact</TableCell>
-                    <TableCell>Assign Partner (pick 1) or Reject:</TableCell>
-                    {/* <TableCell>Assign Partner/ Reject</TableCell> */}
+                    <TableCell>Assign a Partner?</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>

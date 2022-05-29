@@ -75,6 +75,7 @@ export default function initRequestController(db) {
   // which contain the critical Partner name and identity
   // with which we will in turn assign requests to. 
   // This is the core of the whole App.
+
   const getPartnersForOneRequest = async (request, response) => {
     console.log('getting single row request body...');
     console.log(request.params.id);
@@ -142,7 +143,7 @@ export default function initRequestController(db) {
       const partnerId = Number(request.body.partnerId);
       const requestId = request.body.requestId;
 
-      if (partnerId === null){
+      if (partnerId === 0){
         console.log("null partnerId detected")
         console.log(`requestId: ${requestId}, partnerId: ${partnerId}`);
 
