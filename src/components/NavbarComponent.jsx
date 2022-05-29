@@ -18,7 +18,7 @@ export default function NavbarComponent({showLogin, setShowLogin, loggedIn, setL
     <Router>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand >Partner Referral App</Navbar.Brand>
+          <Navbar.Brand as = {Link} to = {"/"} >Partner Referral App</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -31,6 +31,7 @@ export default function NavbarComponent({showLogin, setShowLogin, loggedIn, setL
         </Container>
       </Navbar>
       <Routes>
+        <Route path = "/" />
         <Route path="/request" element = {<RequestFormAppear loggedIn = {loggedIn} userData = {userData} />} />
         <Route path="/requests" element = {<RequestsAppear loggedIn = {loggedIn} userData = {userData} allRequests = {allRequests} setAllRequests = {setAllRequests}/>} />
         <Route path="/login" element = {<LoginPage showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData}/>} />

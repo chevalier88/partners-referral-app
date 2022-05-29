@@ -13,6 +13,7 @@ export default function routes(app) {
 
   app.get('/requests', RequestController.getAllRequests);
 
+  app.get('/request/:id', RequestController.getPartnersForOneRequest);
   // special JS page. Include the webpack index.html file
   app.get('/', (request, response) => {
     response.sendFile(resolve('dist', 'main.html'));
