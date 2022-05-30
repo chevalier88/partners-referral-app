@@ -33,7 +33,7 @@ export default function RecommendPartnerData({rowId, setAllRequests, rowAddresse
         }
         setPartnerData(newArray);
       });
-  }, []);
+  }, [partnerSelected]);
 
 
   function handleSubmit (event) {
@@ -51,17 +51,8 @@ export default function RecommendPartnerData({rowId, setAllRequests, rowAddresse
         .then((response)=> {
             console.log('receiving updated row info...');
             console.log(response.data);
-
-            return axios.get('/requests')
-                .then((result) => {
-                    const { data } = result;
-                    const newArray = [];
-                    for (let i = 0; i < data.length; i++) {
-                    newArray.push(data[i]);
-                    }
-                    setAllRequests(newArray);
-                });   
         }); 
+    
   }
   
   // write ternary operator for if partnerData is null
