@@ -8,7 +8,7 @@ import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
-export default function UserMoreMenu({targetRow, setAllRequests}) {
+export default function UserMoreMenu({targetRow, setAllRequests, killRow, setKillRow}) {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -19,16 +19,10 @@ export default function UserMoreMenu({targetRow, setAllRequests}) {
     axios.delete(`./request/${targetRow}`)
     .then((response)=> {
       console.log(response);
-      axios.get('/requests')
-        .then((result) => {
-            const { data } = result;
-            const newArray = [];
-            for (let i = 0; i < data.length; i++) {
-            newArray.push(data[i]);
-            }
-            setAllRequests(newArray);
-        });   
-    })
+      }
+    )
+    setIsOpen(false);
+    setKillRow(false);
   }
 
   return (
