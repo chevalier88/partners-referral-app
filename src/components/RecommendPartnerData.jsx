@@ -14,6 +14,7 @@ export default function RecommendPartnerData({rowId, setAllRequests, rowAddresse
   const [partnerData, setPartnerData] = useState([]);
   const [partnerSelected, setPartnerSelected] = useState("");
   const [partnerAssigned, setPartnerAssigned] = useState("");
+  const [justSubmitted, setJustSubmitted] = useState(false);
 
   console.log(rowId);
   console.log(rowAddressed);
@@ -33,7 +34,7 @@ export default function RecommendPartnerData({rowId, setAllRequests, rowAddresse
         }
         setPartnerData(newArray);
       });
-  }, [partnerSelected]);
+  }, []);
 
 
   function handleSubmit (event) {
@@ -46,6 +47,8 @@ export default function RecommendPartnerData({rowId, setAllRequests, rowAddresse
     };
     console.log('printing currently submitted request...');
     console.log(currentSubmittedRequest);
+    
+    setJustSubmitted(true);
 
     axios.put(`/request/${rowId}`, currentSubmittedRequest)
         .then((response)=> {
@@ -57,34 +60,38 @@ export default function RecommendPartnerData({rowId, setAllRequests, rowAddresse
   
   // write ternary operator for if partnerData is null
   if (rowAddressed === false) {
-    whatWillAppear = 
-        <Form onSubmit={handleSubmit}>
-            <Form.Group controlId = "partnerSelected">
-                <Form.Control
-                    as="select"
-                    value={partnerSelected}
-                    placeholder = "select one"
-                    onChange={e => {
-                        console.log("partner value selected:", e.target.value);
-                        setPartnerSelected(e.target.value);
-                    }}>
-                    {partnerData.map((partner) => (         
-                        <option value={partner.id.toString()} key={partner.name.toString()}>
-                            {partner.name}
-                        </option>
-                    ))}
-                    <option value = "" key = "null">-- REJECT; Don't Assign --</option>
-                </Form.Control>
-            </Form.Group>
-            <Button block size="sm-3" type="submit" >
-                Submit
-            </Button>
-        </Form>
-    } else if (rowAddressed === true && rowPartnerIdAssigned === null) {
+    if(justSubmitted === false) {
+        whatWillAppear = 
+            <Form onSubmit={handleSubmit}>
+                <Form.Group controlId = "partnerSelected">
+                    <Form.Control
+                        as="select"
+                        value={partnerSelected}
+                        placeholder = "select one"
+                        onChange={e => {
+                            console.log("partner value selected:", e.target.value);
+                            setPartnerSelected(e.target.value);
+                        }}>
+                        {partnerData.map((partner) => (         
+                            <option value={partner.id.toString()} key={partner.name.toString()}>
+                                {partner.name}
+                            </option>
+                        ))}
+                        <option value = "" key = "null">-- REJECT; Don't Assign --</option>
+                    </Form.Control>
+                </Form.Group>
+                <Button block size="sm-3" type="submit" >
+                    Submit
+                </Button>
+            </Form>
+    } else if (justSubmitted === true) {
+        whatWillAppear = <p>Query Addressed!</p>
+    }
+} else if (rowAddressed === true && rowPartnerIdAssigned === null) {
 
-        whatWillAppear = <p> Request was addressed, but REJECTED! </p>
-        
-    } else if (rowAddressed === true && rowPartnerIdAssigned !== null ){
+    whatWillAppear = <p> Request was addressed, but REJECTED! </p>
+
+} else if (rowAddressed === true && rowPartnerIdAssigned !== null ){
         console.log('query was addressed, and a partner was assigned!')
         useEffect(() => {
             axios.get(`/partner/${rowPartnerIdAssigned}`)
