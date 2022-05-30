@@ -26,6 +26,8 @@ function Row({row, setAllRequests}) {
   const [partnerSelected, setPartnerSelected] = useState("");
   const [open, setOpen] = useState(false);
 
+  const [requestAddressStatus, setRequestAddressStatus] = useState(row.requestAddressed);
+
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -54,7 +56,7 @@ function Row({row, setAllRequests}) {
             <p key={region.name.toString()}>{region.name}</p>
           ))}
         </TableCell>
-        <TableCell align="left">{String(row.requestAddressed)}</TableCell>
+        <TableCell align="left">{String(requestAddressStatus)}</TableCell>
         <TableCell align="left"></TableCell>
       </TableRow>
       <TableRow>
@@ -99,7 +101,8 @@ function Row({row, setAllRequests}) {
                 justSubmitted = {justSubmitted} 
                 setJustSubmitted = {setJustSubmitted} 
                 partnerSelected = {partnerSelected} 
-                setPartnerSelected = {setPartnerSelected} /> 
+                setPartnerSelected = {setPartnerSelected}
+                setRequestAddressStatus = {setRequestAddressStatus} /> 
             </Box>
           </Collapse>
         </TableCell>

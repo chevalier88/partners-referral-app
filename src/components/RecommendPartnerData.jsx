@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export default function RecommendPartnerData({rowId, rowAddressed, rowPartnerIdAssigned, justSubmitted, setJustSubmitted, partnerSelected, setPartnerSelected}){
+export default function RecommendPartnerData({rowId, rowAddressed, rowPartnerIdAssigned, justSubmitted, setJustSubmitted, partnerSelected, setPartnerSelected, setRequestAddressStatus}){
   const [partnerData, setPartnerData] = useState([]);
   const [partnerAssigned, setPartnerAssigned] = useState("");
 
@@ -52,6 +52,7 @@ export default function RecommendPartnerData({rowId, rowAddressed, rowPartnerIdA
             console.log('receiving updated row info...');
             console.log(response.data);
             setJustSubmitted(true);
+            setRequestAddressStatus(true);
         }); 
   }
   
