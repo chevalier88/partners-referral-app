@@ -8,26 +8,51 @@ import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
-export default function UserMoreMenu({targetRow, setAllRequests, killRow, setKillRow}) {
+export default function UserMoreMenu({targetRow, allRequests, setAllRequests}) {
+  
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+
+  function handleOpen(e){
+    e.preventDefault();
+    setIsOpen(true);
+    console.log('using delete popup to check allRequests...');
+    console.log(allRequests);
+    };
+  
 
   function handleClick(e){
     e.preventDefault();
     console.log(`delete button was clicked for ${Number(targetRow)}`);
     console.log(targetRow);
+
+    setIsOpen(false);
+    
+    console.log(targetRow);
+
+    const targetIndexOfObjectToDelete = allRequests.findIndex(object => {
+      return object.id === targetRow;
+    })
+
+    console.log('acquiring Object index for deletion...');
+    console.log(targetIndexOfObjectToDelete);
+    
+    const newAllRequests = [...allRequests];
+    newAllRequests.splice(targetIndexOfObjectToDelete, 1);
+    console.log(newAllRequests);
+
     axios.delete(`./request/${targetRow}`)
     .then((response)=> {
       console.log(response);
       }
     )
-    setIsOpen(false);
-    setKillRow(false);
+    
+    setAllRequests(newAllRequests);
   }
 
   return (
     <>
-      <IconButton ref={ref} onClick={() => setIsOpen(true)}>
+      <IconButton ref={ref} onClick={(handleOpen)}>
         <Iconify icon="eva:more-vertical-fill" width={20} height={20} />
       </IconButton>
 

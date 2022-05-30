@@ -10,9 +10,8 @@ import TableRow from '@mui/material/TableRow';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export default function ViewPartnerData({rowId, setAllRequests, rowAddressed, rowPartnerIdAssigned}){
+export default function ViewPartnerData({rowId, rowAddressed, rowPartnerIdAssigned}){
   const [partnerData, setPartnerData] = useState([]);
-  const [partnerSelected, setPartnerSelected] = useState("");
   const [partnerAssigned, setPartnerAssigned] = useState("");
 
   console.log(rowId);
@@ -34,35 +33,6 @@ export default function ViewPartnerData({rowId, setAllRequests, rowAddressed, ro
         setPartnerData(newArray);
       });
   }, []);
-
-
-  function handleSubmit (event) {
-    event.preventDefault();
-    console.log('submitting form...');
-
-    const currentSubmittedRequest = {
-        requestId: rowId,
-        partnerId : partnerSelected,
-    };
-    console.log('printing currently submitted request...');
-    console.log(currentSubmittedRequest);
-
-    axios.put(`/request/${rowId}`, currentSubmittedRequest)
-        .then((response)=> {
-            console.log('receiving updated row info...');
-            console.log(response.data);
-
-            return axios.get('/requests')
-                .then((result) => {
-                    const { data } = result;
-                    const newArray = [];
-                    for (let i = 0; i < data.length; i++) {
-                    newArray.push(data[i]);
-                    }
-                    setAllRequests(newArray);
-                });   
-        }); 
-  }
   
   // write ternary operator for if partnerData is null
   if (rowAddressed === false) {

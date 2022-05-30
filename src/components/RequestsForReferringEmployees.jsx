@@ -18,11 +18,9 @@ import axios from 'axios';
 import ViewPartnerData from './ViewPartnerData.jsx';
 import UserMoreMenu from './UserMoreMenu.jsx';
 
-function Row({row, setAllRequests}) {
+function Row({row, allRequests, setAllRequests}) {
   console.log(row);
-  console.log()
   const [open, setOpen] = useState(false);
-  const [killRow, setKillRow] = useState(true);
 
   return (
       <React.Fragment>
@@ -54,7 +52,11 @@ function Row({row, setAllRequests}) {
           </TableCell>
           <TableCell align="left">{String(row.requestAddressed)}</TableCell>
           <TableCell align="left">
-            <UserMoreMenu targetRow={row.id} killRow = {killRow} setKillRow = {setKillRow} />
+            <UserMoreMenu 
+              targetRow={row.id} 
+              allRequests={allRequests} 
+              setAllRequests = {setAllRequests} 
+            />
           </TableCell>     
         </TableRow>
         <TableRow>
@@ -92,7 +94,7 @@ function Row({row, setAllRequests}) {
                   </TableBody>
                 </Table>
                 <br></br>
-                <ViewPartnerData rowId = {row.id} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed} rowPartnerIdAssigned = {row.partnerId} />  
+                <ViewPartnerData rowId = {row.id} rowAddressed = {row.requestAddressed} rowPartnerIdAssigned = {row.partnerId} />  
               </Box>
             </Collapse>
           </TableCell>
@@ -102,7 +104,6 @@ function Row({row, setAllRequests}) {
 }
 
 export default function RequestsForReferringEmployees({allRequests, setAllRequests}) {
-  const [metaOpen, setMetaOpen] = useState(true);
 
   return (
     <TableContainer component={Paper}>
@@ -121,7 +122,12 @@ export default function RequestsForReferringEmployees({allRequests, setAllReques
         </TableHead>
         <TableBody>
           {allRequests.map((row) => (
-            <Row key={row.name} row={row} setAllRequests = {setAllRequests}/>
+            <Row 
+              key={row.name} 
+              row={row} 
+              allRequests={allRequests}
+              setAllRequests={setAllRequests}
+            />
           ))}
         </TableBody>
       </Table>
