@@ -18,7 +18,7 @@ import axios from 'axios';
 import ViewPartnerData from './ViewPartnerData.jsx';
 import UserMoreMenu from './UserMoreMenu.jsx';
 
-function Row({row, allRequests, setAllRequests}) {
+function Row({row, setAllRequests}) {
   console.log(row);
   const [open, setOpen] = useState(false);
 
@@ -100,17 +100,20 @@ function Row({row, allRequests, setAllRequests}) {
 }
 
 export default function RequestsForReferringEmployees({allRequests, setAllRequests}) {
-  useEffect(() => {
-    axios.get('/requests')
-      .then((result) => {
-        const { data } = result;
-        const newArray = [];
-        for (let i = 0; i < data.length; i++) {
-          newArray.push(data[i]);
-        }
-        setAllRequests(newArray);
-      });
-  }, []);
+
+  // const [allRequests, setAllRequests] = useState([]);
+
+  // useEffect(() => {
+  //   axios.get('/requests')
+  //     .then((result) => {
+  //       const { data } = result;
+  //       const newArray = [];
+  //       for (let i = 0; i < data.length; i++) {
+  //         newArray.push(data[i]);
+  //       }
+  //       setAllRequests(newArray);
+  //     });
+  // }, []);
 
   return (
     <TableContainer component={Paper}>

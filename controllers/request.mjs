@@ -142,7 +142,7 @@ export default function initRequestController(db) {
 
       const partnerId = Number(request.body.partnerId);
       const requestId = request.body.requestId;
-
+ 
       if (partnerId === 0){
         console.log("null partnerId detected")
         console.log(`requestId: ${requestId}, partnerId: ${partnerId}`);
@@ -170,8 +170,11 @@ export default function initRequestController(db) {
           {
             where: {
               id : requestId,
+            },
+            include: {
+              model: db.Partner,
             }
-          }
+          },
         );
         console.log(updateOneRequest);
         response.send(updateOneRequest);

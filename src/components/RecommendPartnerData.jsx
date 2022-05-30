@@ -10,11 +10,9 @@ import TableRow from '@mui/material/TableRow';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export default function RecommendPartnerData({rowId, setAllRequests, rowAddressed, rowPartnerIdAssigned}){
+export default function RecommendPartnerData({rowId, rowAddressed, rowPartnerIdAssigned, justSubmitted, setJustSubmitted, partnerSelected, setPartnerSelected}){
   const [partnerData, setPartnerData] = useState([]);
-  const [partnerSelected, setPartnerSelected] = useState("");
   const [partnerAssigned, setPartnerAssigned] = useState("");
-  const [justSubmitted, setJustSubmitted] = useState(false);
 
   console.log(rowId);
   console.log(rowAddressed);
@@ -48,17 +46,15 @@ export default function RecommendPartnerData({rowId, setAllRequests, rowAddresse
     console.log('printing currently submitted request...');
     console.log(currentSubmittedRequest);
     
-    setJustSubmitted(true);
 
     axios.put(`/request/${rowId}`, currentSubmittedRequest)
         .then((response)=> {
             console.log('receiving updated row info...');
             console.log(response.data);
+            setJustSubmitted(true);
         }); 
-    
   }
   
-  // write ternary operator for if partnerData is null
   if (rowAddressed === false) {
     if(justSubmitted === false) {
         whatWillAppear = 
@@ -85,11 +81,15 @@ export default function RecommendPartnerData({rowId, setAllRequests, rowAddresse
                 </Button>
             </Form>
     } else if (justSubmitted === true) {
-        whatWillAppear = <p>Query Addressed!</p>
+        if (partnerSelected === ''){
+            whatWillAppear = <p>Request <b>Rejected!</b></p>
+        } else {
+            whatWillAppear = <p>Request <b>Assigned!</b></p>
+        }
     }
 } else if (rowAddressed === true && rowPartnerIdAssigned === null) {
 
-    whatWillAppear = <p> Request was addressed, but REJECTED! </p>
+    whatWillAppear = <p> Request was addressed, but <b>Rejected!</b></p>
 
 } else if (rowAddressed === true && rowPartnerIdAssigned !== null ){
         console.log('query was addressed, and a partner was assigned!')
@@ -103,7 +103,7 @@ export default function RecommendPartnerData({rowId, setAllRequests, rowAddresse
                 });
         }, []);
 
-        whatWillAppear = <p> ALREADY Assigned to {partnerAssigned}!</p>
+        whatWillAppear = <p> ALREADY Assigned to <b>{partnerAssigned}</b>!</p>
     }
   
   return(

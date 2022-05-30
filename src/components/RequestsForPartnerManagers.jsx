@@ -17,9 +17,13 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import axios from 'axios';
 import RecommendPartnerData from './RecommendPartnerData.jsx';
 
-function Row({row, allRequests, setAllRequests, justSubmitted, setJustSubmitted}) {
+import "regenerator-runtime";
+
+function Row({row, setAllRequests}) {
   console.log(row);
   console.log(row.partnerId);
+  const [justSubmitted, setJustSubmitted] = useState(false);
+  const [partnerSelected, setPartnerSelected] = useState("");
   const [open, setOpen] = useState(false);
 
   return (
@@ -88,7 +92,14 @@ function Row({row, allRequests, setAllRequests, justSubmitted, setJustSubmitted}
                 </TableBody>
               </Table>
               <br></br>
-              < RecommendPartnerData rowId = {row.id} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed} rowPartnerIdAssigned = {row.partnerId} justSubmitted = {justSubmitted} setJustSubmitted = {setJustSubmitted} /> 
+              < RecommendPartnerData 
+                rowId = {row.id} 
+                rowAddressed = {row.requestAddressed} 
+                rowPartnerIdAssigned = {row.partnerId} 
+                justSubmitted = {justSubmitted} 
+                setJustSubmitted = {setJustSubmitted} 
+                partnerSelected = {partnerSelected} 
+                setPartnerSelected = {setPartnerSelected} /> 
             </Box>
           </Collapse>
         </TableCell>
@@ -98,26 +109,6 @@ function Row({row, allRequests, setAllRequests, justSubmitted, setJustSubmitted}
 }
 
 export default function RequestsForPartnerManagers({allRequests, setAllRequests}) {
-
-  const [justSubmitted, setJustSubmitted] = useState(false);
-
-
-  useEffect(() => {
-
-    axios.get('/requests')
-      .then((result) => {
-        const { data } = result;
-        console.log(data);
-        const newArray = [];
-        for (let i = 0; i < data.length; i++) {
-          newArray.push(data[i]);
-        }
-        setAllRequests(newArray);
-        setJustSubmitted(false);
-      });
-  }, [justSubmitted]);
-
-  console.log(justSubmitted);
 
   return (
     <TableContainer component={Paper}>
@@ -136,7 +127,7 @@ export default function RequestsForPartnerManagers({allRequests, setAllRequests}
         </TableHead>
         <TableBody>
           {allRequests.map((row) => (
-            <Row key={row.name} row={row} allRequests = {allRequests} setAllRequests = {setAllRequests} justSubmitted = {justSubmitted} setJustSubmitted = {setJustSubmitted}/>
+            <Row key={row.name} row={row} setAllRequests = {setAllRequests} />
           ))}
         </TableBody>
       </Table>

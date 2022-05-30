@@ -10,11 +10,10 @@ export default function App() {
     name:'', 
     type: ''
   });
-  const [allRequests, setAllRequests] = useState([]);
 
   return (
     <div>
-      <NavbarComponent showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData} allRequests = {allRequests} setAllRequests = {setAllRequests}/>
+      <NavbarComponent showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData}/>
     </div>
   );
 }
