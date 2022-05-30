@@ -17,7 +17,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import axios from 'axios';
 import RecommendPartnerData from './RecommendPartnerData.jsx';
 
-function Row({row, allRequests, setAllRequests}) {
+function Row({row, allRequests, setAllRequests, justSubmitted, setJustSubmitted}) {
   console.log(row);
   console.log(row.partnerId);
   const [open, setOpen] = useState(false);
@@ -88,7 +88,7 @@ function Row({row, allRequests, setAllRequests}) {
                 </TableBody>
               </Table>
               <br></br>
-              < RecommendPartnerData rowId = {row.id} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed} rowPartnerIdAssigned = {row.partnerId} /> 
+              < RecommendPartnerData rowId = {row.id} setAllRequests = {setAllRequests} rowAddressed = {row.requestAddressed} rowPartnerIdAssigned = {row.partnerId} justSubmitted = {justSubmitted} setJustSubmitted = {setJustSubmitted} /> 
             </Box>
           </Collapse>
         </TableCell>
@@ -98,18 +98,26 @@ function Row({row, allRequests, setAllRequests}) {
 }
 
 export default function RequestsForPartnerManagers({allRequests, setAllRequests}) {
+
+  const [justSubmitted, setJustSubmitted] = useState(false);
+
+
   useEffect(() => {
+
     axios.get('/requests')
       .then((result) => {
         const { data } = result;
+        console.log(data);
         const newArray = [];
         for (let i = 0; i < data.length; i++) {
           newArray.push(data[i]);
         }
         setAllRequests(newArray);
-        console.log(allRequests);
+        setJustSubmitted(false);
       });
-  }, []);
+  }, [justSubmitted]);
+
+  console.log(justSubmitted);
 
   return (
     <TableContainer component={Paper}>
@@ -128,7 +136,7 @@ export default function RequestsForPartnerManagers({allRequests, setAllRequests}
         </TableHead>
         <TableBody>
           {allRequests.map((row) => (
-            <Row key={row.name} row={row} allRequests = {allRequests} setAllRequests = {setAllRequests}/>
+            <Row key={row.name} row={row} allRequests = {allRequests} setAllRequests = {setAllRequests} justSubmitted = {justSubmitted} setJustSubmitted = {setJustSubmitted}/>
           ))}
         </TableBody>
       </Table>
