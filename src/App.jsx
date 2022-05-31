@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavbarComponent from './components/NavbarComponent.jsx';
 // import NavSection from './components/NavSection.jsx';
 import "bootstrap/js/src/collapse.js";
+import ResponsiveAppBar from './components/NavbarComponent2.jsx';
 // import DashboardSidebar from './components/DashboardSidebar.jsx';
 
 export default function App() {
@@ -15,7 +16,9 @@ export default function App() {
 
   return (
     <div>
-      <NavbarComponent showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData}/>
+      {/* <NavbarComponent showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData}/> */}
+
+      <ResponsiveAppBar showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData}></ResponsiveAppBar>
     </div>
   );
 }

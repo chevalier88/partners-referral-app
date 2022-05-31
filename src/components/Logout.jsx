@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
 
 export default function Logout({loggedIn, setLoggedIn, userData, setUserData, showLogin, setShowLogin}) {
   console.log('Logout CHECKS running...')
@@ -21,7 +23,12 @@ export default function Logout({loggedIn, setLoggedIn, userData, setUserData, sh
 
   return (
     <div>
-      <h1>Logout Succesful!</h1>
+      <br></br>
+      <Container maxWidth ="md">
+        <h3>Logout Successful!</h3>
+        <br></br>
+        <Alert severity="info">You need to log in to create, view, edit or delete requests!</Alert>
+      </Container>
     </div>
   );
 }

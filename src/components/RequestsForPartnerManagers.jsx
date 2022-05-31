@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Checkbox from '@mui/material/Checkbox';
 
 import axios from 'axios';
 import RecommendPartnerData from './RecommendPartnerData.jsx';
@@ -27,6 +28,22 @@ function Row({row, setAllRequests}) {
   const [open, setOpen] = useState(false);
 
   const [requestAddressStatus, setRequestAddressStatus] = useState(row.requestAddressed);
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+  // if (requestAddressStatus === true){
+  //   queryAddressAlert = <Checkbox {...label} disabled checked />
+  //   } else {
+  //   queryAddressAlert = <Checkbox {...label} disabled />
+  //   };
+
+  // useEffect(() => {
+  //   if (requestAddressStatus === true){
+  //     queryAddressAlert = <Checkbox {...label} disabled checked />
+  //   } else {
+  //     queryAddressAlert = <Checkbox {...label} disabled />
+  //   }
+  // }, [requestAddressStatus]);
+
 
   return (
     <React.Fragment>
@@ -56,7 +73,10 @@ function Row({row, setAllRequests}) {
             <p key={region.name.toString()}>{region.name}</p>
           ))}
         </TableCell>
-        <TableCell align="left">{String(requestAddressStatus)}</TableCell>
+        <TableCell align="left">
+          {/* {requestAddressStatus ? <Checkbox {...label} disabled checked /> : <Checkbox {...label} disabled />} */}
+          {String(requestAddressStatus)}
+        </TableCell>
         <TableCell align="left"></TableCell>
       </TableRow>
       <TableRow>

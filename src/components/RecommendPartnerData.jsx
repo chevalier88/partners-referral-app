@@ -8,7 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 export default function RecommendPartnerData({rowId, rowAddressed, rowPartnerIdAssigned, justSubmitted, setJustSubmitted, partnerSelected, setPartnerSelected, setRequestAddressStatus}){
   const [partnerData, setPartnerData] = useState([]);
@@ -74,12 +75,20 @@ export default function RecommendPartnerData({rowId, rowAddressed, rowPartnerIdA
                                 {partner.name}
                             </option>
                         ))}
-                        <option value = "" key = "null">-- REJECT; Don't Assign --</option>
+                        <option value = "" key = "null">-- REJECT, Don't Assign --</option>
                     </Form.Control>
                 </Form.Group>
-                <Button block size="sm-3" type="submit" >
-                    Submit
-                </Button>
+                <Box
+                    m={1}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    >
+                    <Button block size="sm-3" type="submit" >
+                        Submit
+                    </Button>
+                </Box>
+
             </Form>
     } else if (justSubmitted === true) {
         if (partnerSelected === ''){

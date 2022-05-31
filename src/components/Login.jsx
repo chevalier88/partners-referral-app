@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
+import Container from '@mui/material/Container';
 import axios from "axios";
 
 export default function Login({email, setEmail, password, setPassword, setLoggedIn, userData, setUserData, setShowLogin, setLoginError}) {
@@ -23,7 +23,6 @@ export default function Login({email, setEmail, password, setPassword, setLogged
       console.log('printing response.data from login form submit...');
       console.log(Object.keys(response));
       if (response.data.id != null){
-        // this means there's an id for the user and it's a real user
         setLoggedIn(true);
         const newUserData = {
           id: response.data.id, 
@@ -44,7 +43,7 @@ export default function Login({email, setEmail, password, setPassword, setLogged
 
   return (
     <div className="Login">
-      <Container>
+      <Container maxWidth ="sm">
         <Form onSubmit={handleSubmit}>
           <Form.Group size="sm-3" controlId="email">
             <Form.Label>Email</Form.Label>
