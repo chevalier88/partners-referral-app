@@ -21,7 +21,7 @@ export default function UserMoreMenu({targetRow, allRequests, setAllRequests}) {
     };
   
 
-  function handleClick(e){
+  function handleDeleteButtonClick(e){
     e.preventDefault();
     console.log(`delete button was clicked for ${Number(targetRow)}`);
     console.log(targetRow);
@@ -66,19 +66,12 @@ export default function UserMoreMenu({targetRow, allRequests, setAllRequests}) {
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        <MenuItem sx={{ color: 'text.secondary' }} onClick = {handleClick}>
+        <MenuItem sx={{ color: 'text.secondary' }} onClick = {handleDeleteButtonClick}>
           <ListItemIcon>
             <Iconify icon="eva:trash-2-outline" width={24} height={24} />
           </ListItemIcon>
           <ListItemText primary="Delete" primaryTypographyProps={{ variant: 'body2' }} />
         </MenuItem>
-
-        {/* <MenuItem component={RouterLink} to="#" sx={{ color: 'text.secondary' }}>
-          <ListItemIcon>
-            <Iconify icon="eva:edit-fill" width={24} height={24} />
-          </ListItemIcon>
-          <ListItemText primary="Edit" primaryTypographyProps={{ variant: 'body2' }} />
-        </MenuItem> */}
       </Menu>
     </>
   );
