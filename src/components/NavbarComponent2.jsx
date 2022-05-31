@@ -171,8 +171,8 @@ export default function ResponsiveAppBar({showLogin, setShowLogin, loggedIn, set
               >
                 <MenuItem key="login" onClick={handleCloseUserMenu}>
                   <Nav.Link as={Link} to = {"/login"}>
-                      <Typography textAlign="center" as={Link} to = {"/login"}>Login
-                      </Typography>
+                    <Typography textAlign="center" as={Link} to = {"/login"}>Login
+                    </Typography>
                   </Nav.Link>
                 </MenuItem>
                 <MenuItem>

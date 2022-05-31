@@ -21,7 +21,7 @@ export default function Notification({loggedIn, loginError, userData, notificati
     <div>
       <br></br>
       <Container maxWidth ="md">
-        {notificationText}
+        <p>{notificationText}</p>
       </Container>
       <br></br>
     </div>

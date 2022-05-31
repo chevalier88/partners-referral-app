@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
+import Container from '@mui/material/Container';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function RequestForm({userData}) {
   const userID = userData.id;
@@ -12,6 +13,13 @@ export default function RequestForm({userData}) {
   const [entitiesStatus, setEntitiesStatus] = useState("");
   const [employeeNumbers, setEmployeeNumbers] = useState(0);
   const [comments, setComments] = useState("");
+
+  let navigate = useNavigate(); 
+
+  const routeChange = () =>{ 
+    let path = `/requests`; 
+    navigate(path);
+  }
 
   function handleSubmit (event) {
     event.preventDefault();
@@ -34,12 +42,14 @@ export default function RequestForm({userData}) {
     .then((response)=> {
       console.log(response.data);
     }); 
+    
+    routeChange();
   }
   
   return (
     <div>
-      <p>Logged In as Referring Employee! You can submit a request here:</p>
-          <Container>
+      <p>Logged In as Referring Employee! Tell us about your request, please:</p>
+          <Container maxWidth = "md">
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="serviceRequested">
                 <Form.Label>Service Requested:</Form.Label>
