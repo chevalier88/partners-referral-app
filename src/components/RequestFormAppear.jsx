@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RequestForm from "./RequestForm.jsx";
 import Notification from "./Notification.jsx";
 import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
 
 export default function RequestFormAppear({loggedIn, userData}) {
   console.log(`loggedIn: ${loggedIn}`);
@@ -25,7 +26,8 @@ export default function RequestFormAppear({loggedIn, userData}) {
     if (userData.type === 'referring employee') {
       whatWillAppear = <RequestForm userData = {userData} />
     } else {
-      whatWillAppear = 'Sorry, only non-Partner Manager Employees can Submit Requests for Partner Referrals!'
+      whatWillAppear = <Alert severity="warning">Sorry, only non-Partner Manager Employees can Submit Requests for Partner Referrals!</Alert>
+      
     }
   } else {
     whatWillAppear = < Notification loggedIn = {loggedIn} userData = {userData} notificationText = {notificationText} setNotificationText = {setNotificationText} />;
@@ -35,8 +37,9 @@ export default function RequestFormAppear({loggedIn, userData}) {
   return (
     <div>
       <br></br>
-      <Container maxWidth = "md">
+      <Container maxWidth = "sm">
         <h3>Submit A New Request</h3>
+        <br></br>
         {whatWillAppear}
       </Container>
     </div>

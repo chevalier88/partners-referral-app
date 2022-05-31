@@ -20,6 +20,7 @@ import UserMoreMenu from './UserMoreMenu.jsx';
 function Row({row, allRequests, setAllRequests}) {
   console.log(row);
   const [open, setOpen] = useState(false);
+  // const [extraMenu, setExtraMenu] = useState(true);
 
   return (
       <React.Fragment>
@@ -51,11 +52,13 @@ function Row({row, allRequests, setAllRequests}) {
           </TableCell>
           <TableCell align="left">{String(row.requestAddressed)}</TableCell>
           <TableCell align="left">
-            <UserMoreMenu 
-              targetRow={row.id} 
-              allRequests={allRequests} 
-              setAllRequests = {setAllRequests} 
-            />
+            {!open &&
+              <UserMoreMenu 
+                targetRow={row.id} 
+                allRequests={allRequests} 
+                setAllRequests = {setAllRequests} 
+              />
+            }
           </TableCell>     
         </TableRow>
         <TableRow>

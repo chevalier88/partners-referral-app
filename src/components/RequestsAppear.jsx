@@ -51,6 +51,7 @@ export default function RequestsAppear({loggedIn, userData}) {
       <br></br>
       <Container maxWidth ="md">
         <h3>All Requests</h3>
+        <br></br>
         {whatWillAppear}
       </Container>
     </div>
