@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Checkbox from '@mui/material/Checkbox';
 
 import ViewPartnerData from './ViewPartnerData.jsx';
 import UserMoreMenu from './UserMoreMenu.jsx';
@@ -20,7 +21,16 @@ import UserMoreMenu from './UserMoreMenu.jsx';
 function Row({row, allRequests, setAllRequests}) {
   console.log(row);
   const [open, setOpen] = useState(false);
-  // const [extraMenu, setExtraMenu] = useState(true);
+  const [requestAddressStatus, setRequestAddressStatus] = useState(row.requestAddressed);
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+  let queryAddressAlert;
+
+  if (requestAddressStatus === true){
+    queryAddressAlert = <Checkbox {...label} disabled checked />
+  } else {
+    queryAddressAlert = <Checkbox {...label} disabled />
+  }
 
   return (
       <React.Fragment>
@@ -50,7 +60,7 @@ function Row({row, allRequests, setAllRequests}) {
               <p key={region.name.toString()}>{region.name}</p>
             ))}
           </TableCell>
-          <TableCell align="left">{String(row.requestAddressed)}</TableCell>
+          <TableCell align="left">{queryAddressAlert}</TableCell>
           <TableCell align="left">
             {!open &&
               <UserMoreMenu 
