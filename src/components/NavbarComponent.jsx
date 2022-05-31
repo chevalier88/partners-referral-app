@@ -15,9 +15,9 @@ import Logout from './Logout.jsx';
 
 export default function NavbarComponent({showLogin, setShowLogin, loggedIn, setLoggedIn, userData, setUserData, }){
   return(  
-    <Router>
+    <Router >
       <Navbar bg="light" expand="lg">
-        <Container>
+        <Container >
           <Navbar.Brand as = {Link} to = {"/"} >Partner Referral App</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
