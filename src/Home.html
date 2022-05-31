@@ -1,0 +1,316 @@
+<html>
+  <link type="text/css" id="dark-mode" rel="stylesheet" href="" /><head>
+    <title>Globalization Partners</title>
+
+    <!-- This stylesheet link was copied form the auth0:head tag. It provides the CSS class name hashes used below.
+            We should periodically update this to newer versions. Changing the version will cause the CSS class names
+            to change, so the CSS class name hashes below will also need to be updated. -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.auth0.com/ulp/react-components/1.56.28/css/main.cdn.min.css"
+    />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <style>
+      /* Make sure these variables are defined after the auth0:head element so that we override the default values. */
+      :root {
+        --logo-height: 100px;
+        --title-font-size: 17px;
+        --title-font-color: rgb(35, 42, 106);
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: rgba(241, 241, 241, 0.8);
+      }
+      .header-bar {
+        width: 100%;
+        height: 7vh;
+        background: linear-gradient(
+            270deg,
+            #0c96fa 0%,
+            rgba(136, 204, 253, 0.487877) 63.48%,
+            rgba(255, 255, 255, 0) 100%
+          ),
+          #16e1f5;
+      }
+      .below-header-bar {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+      .login-image {
+        flex: 4;
+        background: url(https://goglobal.globalization-partners.com/assets/images/global/product-login.jpg)
+          repeat-y;
+        background-size: contain;
+      }
+      @media (max-width: 48rem) {
+        .login-image {
+          display: none;
+        }
+      }
+      .login-column {
+        flex: 6;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      #lock-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      #lock-container > main {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #lock-container > main > section > div {
+        min-height: initial;
+      }
+      @media (max-width: 480px) {
+        #lock-container > main > section {
+          width: 100%;
+          height: 100%;
+        }
+        #lock-container > main > section > div {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+    </style>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin="true"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&amp;display=swa"
+    />
+  </head>
+  <body>
+    <div class="header-bar"></div>
+    <div class="below-header-bar">
+      <div class="login-image"></div>
+      <div class="login-column">
+        <div id="lock-container">
+          <!-- The main tag tree is copied from Auth0's widget. Do not edit, because we want it to match the Auth0 widget.
+                         The CSS class names come from the Auth0 stylesheet referenced above, in the head tag.
+                         This element gets removed after the user enters their name, before they enter their password. -->
+          <main class="_widget login">
+            <section class="cf7cb0683 _prompt-box-outer cd488bb40">
+              <div class="cb158515f cc5801146">
+                <div class="c835b06af">
+                  <header class="ca2efc7d8 c61e4fcc8">
+                    <div
+                      title="Globalization Partners"
+                      id="custom-prompt-logo"
+                      style="
+                        width: auto !important;
+                        height: 60px !important;
+                        position: static !important;
+                        margin: auto !important;
+                        padding: 0 !important;
+                        background-color: transparent !important;
+                        background-position: center !important;
+                        background-size: contain !important;
+                        background-repeat: no-repeat !important;
+                      "
+                    ></div>
+                    <img
+                      class="c96a09c95 caf6ecf25"
+                      id="prompt-logo-center"
+                      src="https://4cdnik36lg2h29hfmo31l9qs-wpengine.netdna-ssl.com/wp-content/themes/globalization-partners/img/logo-globalization-partners-full.svg"
+                      alt="Globalization Partners"
+                    />
+                    <h1 class="c3fa29956 c926e5028"></h1>
+                    <div class="c2077a76c cac95ad60">
+                      <p
+                        class="c76075b34 c2fad6637"
+                        style="color: rgb(35, 42, 106); font-size: 17px"
+                      >
+                        Build your global team. Anywhere in the world. The easy
+                        way.
+                      </p>
+                    </div>
+                  </header>
+                  <div class="c439d90a0 c37cd0ac8">
+                    <div
+                      id="prompt-alert"
+                      class="c8cefe7cc c7fdd33fc cd28a0293 cfa49d84b"
+                      style="display: none; margin-bottom: 32px"
+                      aria-live="assertive"
+                      aria-atomic="true"
+                    >
+                      <p id="prompt-alert-msg" class="c1f4821aa cc6e58653"></p>
+                    </div>
+                    <form
+                      id="gp-auth0-form"
+                      method="POST"
+                      class="c0425e711 c322487ef"
+                    >
+                      <input
+                        id="gp-state"
+                        type="hidden"
+                        name="state"
+                        value="hKFo2SBmajBTLVpaTURBQ2thekIxZTZHc3J3Skd1eWpDYlFJVaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIFlsTHZjWXd0Rm1BRWpKRFNDVmZYenRXXzlFV04xZ2N1o2NpZNkgWG5PYnZUOGtXN2s1ZDFvVTl5MUpqODFON21SdU1xQVo"
+                      />
+                      <div class="cb0776e96 c55a4daea">
+                        <div class="c91b28086">
+                          <div
+                            class="input-wrapper _input-wrapper"
+                            style="margin-bottom: 20px"
+                          >
+                            <div
+                              class="c02a080f8 c73989c48 text ca6eb1802 ca3650202"
+                              data-action-text=""
+                              data-alternate-action-text=""
+                            >
+                              <input
+                                class="input cd8c0df77 c519c8f96"
+                                inputmode="email"
+                                name="username"
+                                id="username"
+                                type="text"
+                                value=""
+                                required=""
+                                autocomplete="username"
+                                autocapitalize="none"
+                                spellcheck="false"
+                                autofocus=""
+                              />
+                              <div
+                                class="ce2114906 js-required c561cbbd4 cf76ea36d"
+                                data-dynamic-label-for="username"
+                                aria-hidden="true"
+                                style="
+                                  top: var(--input-label-top-focus);
+                                  line-height: 8px;
+                                  transform: var(--input-label-transform-focus);
+                                "
+                              >
+                                Email address
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="c6d7d2ace">
+                        <button
+                          id="gp-submit"
+                          type="submit"
+                          name="action"
+                          value="default"
+                          class="cd1df0865 c0b512bff c6cad41d5 c132a5a03 c571d5ab7"
+                        >
+                          Continue
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Handle email form submission (stage one):
+      window.startLoginFlow = function () {
+        window.configureFields(function () {
+          const encodedEmail = encodeURIComponent(
+            document.getElementById("username").value
+          );
+
+          // Retrieve user's login options:
+          fetch(
+            "https://goglobal.globalization-partners.com/login/username?email=" +
+              encodedEmail
+          )
+            .then((response) => response.json())
+            .then((options) => {
+              // TODO: in the future, present all options as a list; for now, default to the first option:
+              const option = options[0];
+
+              // See the LoginOption class for the different connectionType values
+              if (option === undefined) {
+                window.displayMessage(
+                  "For your security, it's time to update your password. " +
+                    "We've sent you an email containing a password reset link.",
+                  true
+                );
+              } else if (option.connectionType === "REDIRECT") {
+                // Send them to their identity provider (likely using SSO via Auth0):
+                document.location = option.url;
+              } else if (option.connectionType === "AUTH0_PASSWORD") {
+                window.submitLoginForm(undefined);
+              } else {
+                console.log(
+                  "Unknown connectionType: '" + option.connectionType + "'"
+                );
+              }
+            });
+        });
+      };
+
+      window.submitLoginForm = function (postUrl) {
+        // Submit the form for real, without interception; user will be redirected.
+        document.getElementById("username").disabled = false;
+
+        const form = document.getElementById("gp-auth0-form");
+        form.onsubmit = null;
+        postUrl ? (form.action = postUrl) : form.removeAttribute("action");
+
+        // Click submit instead of form.submit() because the click will include an additional form parameter.
+        document.getElementById("gp-submit").click();
+      };
+
+      window.displayMessage = function (msg, isError) {
+        // Show an error dialog to the user.
+        document.getElementById("prompt-alert-msg").textContent = msg;
+        document.getElementById("prompt-alert").style.display = null;
+        document.getElementById("prompt-alert").style.backgroundColor = isError
+          ? "var(--error-color)"
+          : "var(--success-color)";
+      };
+
+      window.configureFields = function (action) {
+        // Only modify the state in this function to keep this manageable.
+        document.getElementById("prompt-alert").style.display = "none";
+        document.getElementById("prompt-alert-msg").textContent = "";
+
+        document.getElementById("gp-auth0-form").onsubmit = function () {
+          action();
+          // Prevent the form's default action from POST-ing and changing the browser's URL:
+          return false;
+        };
+      };
+
+      window.onload = function () {
+        const addr = new URL(window.location);
+        window.auth0State = addr.searchParams.get("state");
+
+        // A hidden input on the form needs the state:
+        document.getElementById("gp-state").value = auth0State;
+        window.startLoginFlow();
+      };
+    </script>
+  </body>
+</html>

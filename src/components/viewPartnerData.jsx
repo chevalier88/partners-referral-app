@@ -7,9 +7,6 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-
 export default function ViewPartnerData({rowId, rowAddressed, rowPartnerIdAssigned}){
   const [partnerData, setPartnerData] = useState([]);
   const [partnerAssigned, setPartnerAssigned] = useState("");
