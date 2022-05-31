@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 // material
 import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@mui/material';
 // component
-import Iconify from './Iconify.jsx';
+import Iconify from '../style_components/Iconify.jsx';
 import axios from 'axios';
 
 // ----------------------------------------------------------------------

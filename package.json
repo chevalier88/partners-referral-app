@@ -70,6 +70,7 @@
     "react-bootstrap": "^2.4.0",
     "react-collapsing-table": "^1.0.5",
     "react-router-dom": "^6.3.0",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "simplebar-react": "^2.4.1"
   }
 }
