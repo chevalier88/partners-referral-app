@@ -14,7 +14,6 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-import axios from 'axios';
 import ViewPartnerData from './ViewPartnerData.jsx';
 import UserMoreMenu from './UserMoreMenu.jsx';
 
