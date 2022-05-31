@@ -74,7 +74,8 @@ function Row({row, setAllRequests}) {
           ))}
         </TableCell>
         <TableCell align="left">
-          {requestAddressStatus ? <Checkbox {...label} disabled checked /> : <Checkbox {...label} disabled />}
+          {/* {requestAddressStatus ? <Checkbox {...label} disabled checked /> : <Checkbox {...label} disabled />} */}
+          {String(requestAddressStatus)}
         </TableCell>
         <TableCell align="left"></TableCell>
       </TableRow>
