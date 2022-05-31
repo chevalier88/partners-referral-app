@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RequestForm from "./RequestForm.jsx";
 import Notification from "./Notification.jsx";
+import Container from '@mui/material/Container';
 
 export default function RequestFormAppear({loggedIn, userData}) {
   console.log(`loggedIn: ${loggedIn}`);
@@ -33,8 +34,10 @@ export default function RequestFormAppear({loggedIn, userData}) {
 
   return (
     <div>
-      <h1>Request Form</h1>
-      {whatWillAppear}
+      <Container maxWidth = "md">
+        <h3>Submit A New Request</h3>
+        {whatWillAppear}
+      </Container>
     </div>
   );
 }

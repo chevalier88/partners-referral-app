@@ -5,9 +5,9 @@ export default function LoginAppear({ showLogin, setShowLogin, email, setEmail, 
 
   return (
     <div>
-      {showLogin && (
-        <Login email = {email} setEmail = {setEmail} password = {password} setPassword = {setPassword} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData} setShowLogin = {setShowLogin} setLoginError = {setLoginError}/>
-      )}
+        {showLogin && (
+          <Login email = {email} setEmail = {setEmail} password = {password} setPassword = {setPassword} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData} setShowLogin = {setShowLogin} setLoginError = {setLoginError}/>
+        )}
     </div>
   );
 }

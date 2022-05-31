@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Container from '@mui/material/Container';
 
 export default function Logout({loggedIn, setLoggedIn, userData, setUserData, showLogin, setShowLogin}) {
   console.log('Logout CHECKS running...')
@@ -21,7 +22,10 @@ export default function Logout({loggedIn, setLoggedIn, userData, setUserData, sh
 
   return (
     <div>
-      <h1>Logout Succesfull!</h1>
+      <br></br>
+      <Container maxWidth ="md">
+        <h3>Logout Successful!</h3>
+      </Container>
     </div>
   );
 }

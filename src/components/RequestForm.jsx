@@ -38,7 +38,7 @@ export default function RequestForm({userData}) {
   
   return (
     <div>
-      <h2>Logged In as Referring Employee! You can submit a request here:</h2>
+      <p>Logged In as Referring Employee! You can submit a request here:</p>
           <Container>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="serviceRequested">

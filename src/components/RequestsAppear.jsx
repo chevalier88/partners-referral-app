@@ -3,6 +3,7 @@ import RequestsForPartnerManagers from "./RequestsForPartnerManagers.jsx";
 import RequestsForReferringEmployees from "./RequestsForReferringEmployees.jsx";
 import Notification from "./Notification.jsx";
 import axios from "axios";
+import Container from '@mui/material/Container';
 
 export default function RequestsAppear({loggedIn, userData}) {
 
@@ -47,8 +48,10 @@ export default function RequestsAppear({loggedIn, userData}) {
 
   return (
     <div>
-      <h1>All Requests</h1>
-      {whatWillAppear}
+      <Container maxWidth ="md">
+        <h3>All Requests</h3>
+        {whatWillAppear}
+      </Container>
     </div>
   );
 }

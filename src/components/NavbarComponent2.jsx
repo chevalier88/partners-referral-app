@@ -175,6 +175,12 @@ export default function ResponsiveAppBar({showLogin, setShowLogin, loggedIn, set
                       </Typography>
                   </Nav.Link>
                 </MenuItem>
+                <MenuItem>
+                  <Nav.Link as={Link} to = {"/logout"}>
+                    <Typography textAlign="center" as={Link} to = {"/login"}>Logout
+                    </Typography>
+                  </Nav.Link>
+                </MenuItem>
               </Menu>
             </Box>
           </Toolbar>
