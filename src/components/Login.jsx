@@ -23,7 +23,6 @@ export default function Login({email, setEmail, password, setPassword, setLogged
       console.log('printing response.data from login form submit...');
       console.log(Object.keys(response));
       if (response.data.id != null){
-        // this means there's an id for the user and it's a real user
         setLoggedIn(true);
         const newUserData = {
           id: response.data.id, 

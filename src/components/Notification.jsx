@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Container from '@mui/material/Container';
 
 export default function Notification({loggedIn, loginError, userData, notificationText, setNotificationText}) {
   if (loggedIn){
@@ -18,7 +19,11 @@ export default function Notification({loggedIn, loginError, userData, notificati
 
   return (
     <div>
-      {notificationText}
+      <br></br>
+      <Container maxWidth ="md">
+        {notificationText}
+      </Container>
+      <br></br>
     </div>
   )
 };

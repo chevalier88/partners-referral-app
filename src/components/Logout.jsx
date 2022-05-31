@@ -21,7 +21,7 @@ export default function Logout({loggedIn, setLoggedIn, userData, setUserData, sh
 
   return (
     <div>
-      <h1>Logout Succesful!</h1>
+      <h1>Logout Succesfull!</h1>
     </div>
   );
 }
