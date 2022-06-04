@@ -43,9 +43,8 @@ export default function RequestForm({userData}) {
     axios.post('/request', currentSubmittedRequest)
     .then((response)=> {
       console.log(response.data);
+      routeChange();
     }); 
-    
-    routeChange();
   }
   
   return (
