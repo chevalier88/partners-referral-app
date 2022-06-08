@@ -38,7 +38,7 @@ export default function initRequestController(db) {
         });
       });
 
-      response.send( 200 );
+      response.sendStatus( 200 );
     } catch (error) {
       console.log(error);
       response.send(error);

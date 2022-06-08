@@ -12,7 +12,7 @@ export default function initPartnerModel(sequelize, DataTypes) {
         type: DataTypes.TEXT,
       },
       userId: {
-        type: DataTypes.TEXT,
+        type: DataTypes.INTEGER,
         references:{
           model:'user',
           key:'id',
