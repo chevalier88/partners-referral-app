@@ -1,4 +1,5 @@
 import { unique } from "webpack-merge";
+import nodemailerTesting from "./nodemailerTest.mjs";
 
 export default function initRequestController(db) {
   const submitRequest = async (request, response) => {
@@ -37,6 +38,9 @@ export default function initRequestController(db) {
           regionId: Number(region),
         });
       });
+
+      console.log('attempting nodemailer...');
+      nodemailerTesting();
 
       response.sendStatus( 200 );
     } catch (error) {

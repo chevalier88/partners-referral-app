@@ -20,12 +20,14 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 
 import RequestsAppear from './RequestsAppear.jsx';
 import LoginPage from './LoginPage.jsx'
 import RequestFormAppear from './RequestFormAppear.jsx';
 import Logout from './Logout.jsx';
+
+// import nodemailerTesting from './nodemailerTest.mjs';
+
 
 export default function ResponsiveAppBar({showLogin, setShowLogin, loggedIn, setLoggedIn, userData, setUserData}){
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -45,6 +47,8 @@ export default function ResponsiveAppBar({showLogin, setShowLogin, loggedIn, set
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  // nodemailerTesting();
 
   return (
     <Router>
