@@ -29,7 +29,7 @@ export default function Requests({allRequests, setAllRequests}) {
         for (let i = 0; i < data.length; i++) {
           newArray.push(data[i]);
         }
-        setAllRequests(newArray);
+        setAllRequests([...data]);
       });
   }, []);
 

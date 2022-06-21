@@ -42,14 +42,15 @@ export default function ViewPartnerData({rowId, rowAddressed, rowPartnerIdAssign
     } else if (rowAddressed === true && rowPartnerIdAssigned !== null ){
         console.log('query was addressed, and a partner was assigned!')
         useEffect(() => {
-            axios.get(`/partner/${rowPartnerIdAssigned}`)
-                .then((response) => {
-                    console.log('getting the partner we already assigned...');
-                    const {data} = response;
-                    console.log(data.name);
-                    setPartnerAssigned(data.name);
-                });
-        }, []);
+            if (rowAddressed === true && rowPartnerIdAssigned !== null)
+                axios.get(`/partner/${rowPartnerIdAssigned}`)
+                    .then((response) => {
+                        console.log('getting the partner we already assigned...');
+                        const {data} = response;
+                        console.log(data.name);
+                        setPartnerAssigned(data.name);
+                    });
+        }, [rowAddressed, rowPartnerIdAssigned]);
 
         whatWillAppear = <p> ALREADY Assigned to {partnerAssigned}!</p>
     }
