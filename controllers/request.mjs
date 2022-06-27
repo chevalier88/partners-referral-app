@@ -40,7 +40,7 @@ export default function initRequestController(db) {
       });
 
       console.log('attempting nodemailer...');
-      nodemailerTesting();
+      nodemailerTesting(JSON.stringify(newRequestObject));
 
       response.sendStatus( 200 );
     } catch (error) {

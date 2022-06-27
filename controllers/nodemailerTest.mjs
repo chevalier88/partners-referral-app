@@ -4,26 +4,27 @@ import nodemailer from 'nodemailer';
 
 // transport contains configuration. But in this example, we are passing object directly.
 
-let partnerManagerEmail;
+export default function nodemailerTesting(response){
+  const partnerManagerEmail = "glim@globalization-partners.com";
 
-partnerManagerEmail = "glim@globalization-partners.com";
+  const transporter = nodemailer.createTransport({
+    service : "hotmail",
+    auth : {
+        user : "gp_partner_app@outlook.com",
+        pass : "Partner_notifications2022!"
+    }
+  });
 
-const transporter = nodemailer.createTransport({
-  service : "hotmail",
-  auth : {
-      user : "gp_partner_app@outlook.com",
-      pass : "Partner_notifications2022!"
-  }
-})
+  const options = {
+    from: "gp_partner_app@outlook.com",
+    to : partnerManagerEmail,
+    subject: "You have a new GP Partner Request!",
+    text: response,
+  };
 
-const options = {
-  from: "gp_partner_app@outlook.com",
-  to : partnerManagerEmail,
-  subject: "You have a new GP Partner Request!",
-  text: "test doge wow",
-}
+  transporter.sendMail(options, function(err, info){
 
-export default function nodemailerTesting(){transporter.sendMail(options, function(err, info){
+
   if (err){
     console.log(err);
     return;
