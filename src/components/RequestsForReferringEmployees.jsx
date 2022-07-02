@@ -24,14 +24,6 @@ function Row({row, allRequests, setAllRequests}) {
   const [requestAddressStatus, setRequestAddressStatus] = useState(row.requestAddressed);
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-  let queryAddressAlert;
-
-  if (requestAddressStatus === true){
-    queryAddressAlert = <Checkbox {...label} disabled checked />
-  } else {
-    queryAddressAlert = <Checkbox {...label} disabled />
-  }
-
   return (
       <React.Fragment>
         <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -60,7 +52,10 @@ function Row({row, allRequests, setAllRequests}) {
               <p key={region.name.toString()}>{region.name}</p>
             ))}
           </TableCell>
-          <TableCell align="left">{queryAddressAlert}</TableCell>
+          <TableCell align="left">
+            <Checkbox {...label} disabled {...(requestAddressStatus && { checked: true}) } />
+          </TableCell>
+            {/* { ...(condition && { key: value }) } */}
           <TableCell align="left">
             {!open &&
               <UserMoreMenu 

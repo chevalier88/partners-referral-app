@@ -10,6 +10,8 @@ export default function RequestFormAppear({loggedIn, userData}) {
   console.log(userData.type);
   console.log(userData);
 
+  // const isPartnerManager = userData.type === 'referring employee' ? false : true;
+
   let isPartnerManager = true;
   if (userData.type === 'referring employee'){
     isPartnerManager = false;
@@ -20,19 +22,13 @@ export default function RequestFormAppear({loggedIn, userData}) {
   
   const [notificationText, setNotificationText] = useState("")
 
-  let whatWillAppear;
-
-  if (loggedIn) {
-    if (userData.type === 'referring employee') {
-      whatWillAppear = <RequestForm userData = {userData} />
-    } else {
-      whatWillAppear = <Alert severity="warning">Sorry, only non-Partner Manager Employees can Submit Requests for Partner Referrals!</Alert>
-      
-    }
-  } else {
-    whatWillAppear = < Notification loggedIn = {loggedIn} userData = {userData} notificationText = {notificationText} setNotificationText = {setNotificationText} />;
-  };
-
+  if (!loggedIn) return (
+  <>
+    <Container>
+      <Notification />
+    </Container>
+  </>
+  )
 
   return (
     <div>
@@ -40,7 +36,8 @@ export default function RequestFormAppear({loggedIn, userData}) {
       <Container maxWidth = "sm">
         <h3>Submit A New Request</h3>
         <br></br>
-        {whatWillAppear}
+        {isPartnerManager && <Alert severity="warning">Sorry, only non-Partner Manager Employees can Submit Requests for Partner Referrals!</Alert>}
+        {!isPartnerManager && <RequestForm userData = {userData} />}
       </Container>
     </div>
   );

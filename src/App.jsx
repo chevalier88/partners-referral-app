@@ -12,8 +12,8 @@ export default function App() {
   });
 
   return (
-    <div>
-      <ResponsiveAppBar showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData}></ResponsiveAppBar>
-    </div>
+    <>
+      <ResponsiveAppBar showLogin = {showLogin} setShowLogin = {setShowLogin} loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} userData = {userData} setUserData = {setUserData} />
+    </>
   );
 }

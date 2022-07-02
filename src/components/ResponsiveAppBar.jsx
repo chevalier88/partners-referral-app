@@ -78,7 +78,8 @@ export default function ResponsiveAppBar({showLogin, setShowLogin, loggedIn, set
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleOpenNavMenu}
+                // element.addEventListener('click', (event) => { ... })
+                onClick={(event) => setAnchorElNav(event.currentTarget)}
                 color="inherit"
               >
                 <MenuIcon />
@@ -101,8 +102,8 @@ export default function ResponsiveAppBar({showLogin, setShowLogin, loggedIn, set
                   display: { xs: 'block', md: 'none' },
                 }}
               >
-                <MenuItem key="New Request" onClick={handleCloseNavMenu}>
-                  <Nav.Link as={Link} to = {"/request"}>
+                <MenuItem key="New Request" onClick={() => setAnchorElNav(null)}>
+                  <Nav.Link as={Link} to="/request">
                     <Typography textAlign="center">New Request</Typography>
                   </Nav.Link>
                 </MenuItem>

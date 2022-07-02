@@ -7,6 +7,21 @@ import { useNavigate } from "react-router-dom";
 import Alert from '@mui/material/Alert';
 import Grid from '@mui/material/Grid';
 
+const makeCountryOptions = () => {
+  return(
+    <>
+    <option value="1">Southeast Asia (ASEAN)</option>
+              <option value="2">Japan</option>
+              <option value="3">Korea</option>
+              <option value="4">Hong Kong and Greater Bay Area (HK GBA)</option>
+              <option value="5">Australia and New Zealand (ANZ)</option>
+              <option value="6">Asia Pacific (APAC)</option>
+              <option value="7">Europe, Middle East and Africa (EMEA)</option>
+              <option value="8">North America (NA)</option>
+    </>
+  )
+}
+
 export default function RequestForm({userData}) {
   const userID = userData.id;
   console.log(userID);
@@ -18,8 +33,7 @@ export default function RequestForm({userData}) {
 
   let navigate = useNavigate(); 
 
-  const routeChange = () =>{ 
-    let path = `/requests`; 
+  export const routeChange = (path) =>{ 
     navigate(path);
   }
 
@@ -43,7 +57,7 @@ export default function RequestForm({userData}) {
     axios.post('/request', currentSubmittedRequest)
     .then((response)=> {
       console.log(response.data);
-      routeChange();
+      routeChange(`/requests`);
     }); 
   }
   
@@ -85,14 +99,7 @@ export default function RequestForm({userData}) {
                 setRegionsRequested(e.target.value);
               }} */}
             
-              <option value="1">Southeast Asia (ASEAN)</option>
-              <option value="2">Japan</option>
-              <option value="3">Korea</option>
-              <option value="4">Hong Kong and Greater Bay Area (HK GBA)</option>
-              <option value="5">Australia and New Zealand (ANZ)</option>
-              <option value="6">Asia Pacific (APAC)</option>
-              <option value="7">Europe, Middle East and Africa (EMEA)</option>
-              <option value="8">North America (NA)</option>
+              {makeCountryOptions()}
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="entitiesStatus">
